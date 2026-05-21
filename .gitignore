@@ -32,6 +32,10 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+
+# large local design exports
+public/reference/Website.pdf
 
 # vercel
 .vercel

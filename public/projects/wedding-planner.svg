@@ -1,0 +1,15 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="820" rx="44" fill="#F7E9DB"/>
+  <rect x="250" y="116" width="700" height="560" rx="28" fill="#F8F8F3" stroke="#202523" stroke-width="10"/>
+  <rect x="310" y="180" width="270" height="42" rx="21" fill="#E7E4FF"/>
+  <rect x="310" y="280" width="580" height="4" fill="#D5D1C4"/>
+  <rect x="310" y="350" width="580" height="4" fill="#D5D1C4"/>
+  <rect x="310" y="420" width="580" height="4" fill="#D5D1C4"/>
+  <rect x="310" y="490" width="580" height="4" fill="#D5D1C4"/>
+  <path d="M735 173C818 118 904 185 880 268C856 351 746 374 706 286C674 218 696 198 735 173Z" fill="#D7A7C8"/>
+  <path d="M735 173C818 118 904 185 880 268C856 351 746 374 706 286C674 218 696 198 735 173Z" stroke="#202523" stroke-width="8"/>
+  <circle cx="450" cy="596" r="34" fill="#DFFB19"/>
+  <circle cx="534" cy="596" r="34" fill="#E7E4FF"/>
+  <circle cx="618" cy="596" r="34" fill="#D7A7C8"/>
+  <text x="62" y="724" fill="#202523" font-family="Arial Black, Impact, sans-serif" font-size="52">WEDDING PLANNER</text>
+</svg>

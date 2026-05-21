@@ -1,0 +1,11 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="820" rx="44" fill="#E6E6E2"/>
+  <path d="M244 640C157 525 171 372 268 278C366 184 520 177 620 260C703 329 720 463 657 551C583 655 380 819 244 640Z" fill="#EF7EB2"/>
+  <path d="M289 592C202 477 216 324 313 230C411 136 565 129 665 212C748 281 765 415 702 503C628 607 425 771 289 592Z" fill="#DFFB19"/>
+  <path d="M338 544C251 429 265 276 362 182C460 88 614 81 714 164C797 233 814 367 751 455C677 559 474 723 338 544Z" fill="#7659E8"/>
+  <path d="M384 586C288 486 278 334 366 231C454 129 607 106 714 179C804 241 835 371 782 466C720 578 534 762 384 586Z" stroke="#FF5AAE" stroke-width="22"/>
+  <path d="M520 690C625 617 701 520 740 414C779 308 772 210 718 132" stroke="#2B302D" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="828" cy="242" r="82" fill="#202523"/>
+  <circle cx="854" cy="218" r="18" fill="#DFFB19"/>
+  <text x="70" y="730" fill="#202523" font-family="Arial Black, Impact, sans-serif" font-size="58">JERAS BORAN</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="820" rx="44" fill="#897FAB"/>
+  <ellipse cx="602" cy="320" rx="390" ry="120" fill="#6D628F"/>
+  <rect x="478" y="190" width="260" height="460" rx="42" fill="#F8F8F3" transform="rotate(-12 478 190)"/>
+  <rect x="520" y="248" width="178" height="312" rx="28" fill="#DFFB19" transform="rotate(-12 520 248)"/>
+  <rect x="552" y="330" width="112" height="14" rx="7" fill="#202523" transform="rotate(-12 552 330)"/>
+  <rect x="538" y="372" width="146" height="12" rx="6" fill="#F8F8F3" transform="rotate(-12 538 372)"/>
+  <rect x="545" y="408" width="116" height="12" rx="6" fill="#F8F8F3" transform="rotate(-12 545 408)"/>
+  <rect x="192" y="196" width="262" height="170" rx="24" fill="#B7ADD8" transform="rotate(-17 192 196)"/>
+  <rect x="770" y="156" width="306" height="196" rx="28" fill="#B7ADD8" transform="rotate(11 770 156)"/>
+  <rect x="192" y="524" width="278" height="162" rx="26" fill="#B7ADD8" transform="rotate(10 192 524)"/>
+  <rect x="792" y="520" width="276" height="162" rx="26" fill="#B7ADD8" transform="rotate(-10 792 520)"/>
+  <circle cx="276" cy="282" r="18" fill="#DFFB19"/>
+  <circle cx="984" cy="250" r="18" fill="#DFFB19"/>
+  <text x="64" y="724" fill="#202523" font-family="Arial Black, Impact, sans-serif" font-size="56">HELLOPAISA UX</text>
+</svg>

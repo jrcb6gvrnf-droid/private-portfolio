@@ -1,0 +1,4 @@
+Gené van Aswegen CV placeholder
+
+Replace public/cv/gene-van-aswegen-cv.pdf with the real CV when it is ready.
+

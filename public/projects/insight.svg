@@ -1,0 +1,13 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="820" rx="44" fill="#F1F1ED"/>
+  <rect x="126" y="120" width="948" height="570" rx="36" fill="#FFFFFF" stroke="#202523" stroke-width="10"/>
+  <rect x="184" y="188" width="240" height="144" rx="22" fill="#E7E4FF"/>
+  <rect x="462" y="188" width="240" height="144" rx="22" fill="#E7E4FF"/>
+  <rect x="740" y="188" width="240" height="144" rx="22" fill="#E7E4FF"/>
+  <rect x="184" y="392" width="396" height="222" rx="22" fill="#2B302D"/>
+  <rect x="636" y="392" width="344" height="222" rx="22" fill="#DFFB19"/>
+  <path d="M222 548C278 456 360 488 404 430C440 382 500 400 536 458" stroke="#DFFB19" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="808" cy="504" r="74" fill="#202523"/>
+  <path d="M808 430A74 74 0 0 1 882 504H808V430Z" fill="#F8F8F3"/>
+  <text x="64" y="724" fill="#202523" font-family="Arial Black, Impact, sans-serif" font-size="58">INSIGHT</text>
+</svg>
