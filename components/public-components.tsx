@@ -111,7 +111,7 @@ export function EditorialMarquee({ items }: { items: string[] }) {
 function ProjectImage({ project }: { project: Project }) {
   return (
     <div className="project-image-shell">
-      <img src={project.coverImage} alt="" loading="lazy" />
+      <img src={project.coverImage} alt="" decoding="async" loading="lazy" />
     </div>
   );
 }
@@ -176,7 +176,7 @@ export function PortfolioPage() {
             <Sparkles size={32} strokeWidth={2.6} />
           </div>
           <div className="hero-card hero-card--portrait">
-            <img src="/images/gene-portrait.jpg" alt="" />
+            <img src="/images/gene-portrait.jpg" alt="" decoding="async" fetchPriority="high" />
           </div>
         </div>
       </section>
@@ -199,7 +199,12 @@ export function PortfolioPage() {
 
       <section className="about-band" id="about">
         <div className="about-image">
-          <img src="/images/gene-about.jpg" alt="Gené surrounded by pink flowers" />
+          <img
+            src="/images/gene-about.jpg"
+            alt="Gené surrounded by pink flowers"
+            decoding="async"
+            loading="lazy"
+          />
         </div>
         <div className="about-copy">
           <h2>ABOUT ME</h2>
@@ -308,7 +313,7 @@ export function CaseStudyView({
         </aside>
       </section>
       <section className="case-cover">
-        <img src={caseHeroImage} alt="" />
+        <img src={caseHeroImage} alt="" decoding="async" fetchPriority="high" />
       </section>
 
       <EditorialMarquee items={project.tags.length ? project.tags : ["IDENTITY DESIGN", "UI/UX DESIGN"]} />
@@ -332,7 +337,7 @@ export function CaseStudyView({
               className={`gallery-frame gallery-frame--${(index % 3) + 1}`}
               key={`${image}-${index}`}
             >
-              <img src={image} alt="" />
+              <img src={image} alt="" decoding="async" loading="lazy" />
             </div>
           ))}
         </section>

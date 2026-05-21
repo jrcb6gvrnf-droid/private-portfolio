@@ -20,6 +20,45 @@ const PROJECT_ORDER_OVERRIDES: Record<string, number> = {
   "proj-jeras": 6,
   "proj-brainwashed": 7,
 };
+const OPTIMIZED_IMAGE_PATHS: Record<string, string> = {
+  "/portfolio-assets/africology/cover.png": "/portfolio-assets/africology/cover.jpeg",
+  "/portfolio-assets/africology/screen-1.png": "/portfolio-assets/africology/screen-1.jpeg",
+  "/portfolio-assets/africology/screen-2.png": "/portfolio-assets/africology/screen-2.jpeg",
+  "/portfolio-assets/brainwashed/cover.png": "/portfolio-assets/brainwashed/cover.jpeg",
+  "/portfolio-assets/brainwashed/refined-mockup.png":
+    "/portfolio-assets/brainwashed/refined-mockup.jpeg",
+  "/portfolio-assets/brainwashed/style-tile.png": "/portfolio-assets/brainwashed/style-tile.jpeg",
+  "/portfolio-assets/brainwashed/style-tile-2.png":
+    "/portfolio-assets/brainwashed/style-tile-2.jpeg",
+  "/portfolio-assets/darling-cellars/before-after-mockup.png":
+    "/portfolio-assets/darling-cellars/before-after-mockup.jpeg",
+  "/portfolio-assets/darling-cellars/cover.png": "/portfolio-assets/darling-cellars/cover.jpeg",
+  "/portfolio-assets/darling-cellars/youtube-banner.png":
+    "/portfolio-assets/darling-cellars/youtube-banner.jpeg",
+  "/portfolio-assets/darling-cellars/youtube-mockup.png":
+    "/portfolio-assets/darling-cellars/youtube-mockup.jpeg",
+  "/portfolio-assets/jeras/boran-joernaal-ad.png":
+    "/portfolio-assets/jeras/boran-joernaal-ad.jpeg",
+  "/portfolio-assets/jeras/cover.png": "/portfolio-assets/jeras/cover.jpeg",
+  "/portfolio-assets/kleinkrans/artboard-6.png":
+    "/portfolio-assets/kleinkrans/artboard-6.jpeg",
+  "/portfolio-assets/kleinkrans/artboard-7.png":
+    "/portfolio-assets/kleinkrans/artboard-7.jpeg",
+  "/portfolio-assets/kleinkrans/artboard-8.png":
+    "/portfolio-assets/kleinkrans/artboard-8.jpeg",
+  "/portfolio-assets/kleinkrans/artboard-9.png":
+    "/portfolio-assets/kleinkrans/artboard-9.jpeg",
+  "/portfolio-assets/kleinkrans/cover.png": "/portfolio-assets/kleinkrans/cover.jpeg",
+  "/portfolio-assets/kleinkrans/egg-carton-sleeve.png":
+    "/portfolio-assets/kleinkrans/egg-carton-sleeve.jpeg",
+  "/portfolio-assets/paycentral-portal/cover.png": "/portfolio-assets/paycentral-portal/cover.jpeg",
+  "/portfolio-assets/paycentral-portal/full-light-page.png":
+    "/portfolio-assets/paycentral-portal/full-light-page.jpeg",
+  "/portfolio-assets/paycentral-portal/full-v2-page.png":
+    "/portfolio-assets/paycentral-portal/full-v2-page.jpeg",
+  "/portfolio-assets/waddle/screen-2.png": "/portfolio-assets/waddle/screen-2.jpeg",
+  "/portfolio-assets/waddle/cover.png": "/portfolio-assets/waddle/cover.jpeg",
+};
 
 export function slugify(value: string) {
   return value
@@ -107,9 +146,12 @@ function migrateStoredProjects(projects: Project[]) {
   return projects.filter((project) => !REMOVED_PROJECT_IDS.has(project.id)).map((project) => {
     const normalizedProject = {
       ...project,
+      coverImage: OPTIMIZED_IMAGE_PATHS[project.coverImage] ?? project.coverImage,
       tools: Array.isArray(project.tools) ? project.tools : [],
       tags: Array.isArray(project.tags) ? project.tags : [],
-      galleryImages: Array.isArray(project.galleryImages) ? project.galleryImages : [],
+      galleryImages: Array.isArray(project.galleryImages)
+        ? project.galleryImages.map((image) => OPTIMIZED_IMAGE_PATHS[image] ?? image)
+        : [],
       order: PROJECT_ORDER_OVERRIDES[project.id] ?? project.order,
     };
 
