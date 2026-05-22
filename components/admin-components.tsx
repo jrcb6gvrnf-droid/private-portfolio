@@ -17,6 +17,7 @@ import {
   Save,
   Star,
   Trash2,
+  Upload,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AdminPreviewPage } from "@/components/public-components";
@@ -30,6 +31,10 @@ import {
   splitList,
   useProjects,
 } from "@/lib/project-storage";
+
+const imageFallback = "/projects/social-house.svg";
+const maxUploadedImageEdge = 2600;
+const uploadJpegQuality = 0.88;
 
 export function AdminShell({ children }: { children: React.ReactNode }) {
   const [unlocked, setUnlocked] = useState(false);
@@ -177,7 +182,7 @@ export function AdminProjectsPage() {
         {projects.map((project) => (
           <article className="admin-project-card" key={project.id}>
             <div className="admin-thumb">
-              <img src={project.coverImage} alt="" />
+              <img src={project.coverImage || imageFallback} alt="" />
               {project.featured ? (
                 <span className="admin-star">
                   <Star size={14} fill="currentColor" />
@@ -251,6 +256,67 @@ function formatDate(value: string) {
   }).format(new Date(value));
 }
 
+function splitGalleryImages(value: string) {
+  return value
+    .split("\n")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function readFileAsDataUrl(file: File) {
+  return new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result || ""));
+    reader.onerror = () => reject(new Error("Could not read this image."));
+    reader.readAsDataURL(file);
+  });
+}
+
+function loadImageFromUrl(url: string) {
+  return new Promise<HTMLImageElement>((resolve, reject) => {
+    const image = new Image();
+    image.onload = () => resolve(image);
+    image.onerror = () => reject(new Error("Could not prepare this image."));
+    image.src = url;
+  });
+}
+
+async function prepareUploadedImage(file: File) {
+  if (!file.type.startsWith("image/")) {
+    throw new Error("Please choose an image file.");
+  }
+
+  if (file.type === "image/svg+xml") {
+    return readFileAsDataUrl(file);
+  }
+
+  const objectUrl = URL.createObjectURL(file);
+
+  try {
+    const image = await loadImageFromUrl(objectUrl);
+    const longestEdge = Math.max(image.naturalWidth, image.naturalHeight);
+    const scale = Math.min(1, maxUploadedImageEdge / longestEdge);
+    const width = Math.max(1, Math.round(image.naturalWidth * scale));
+    const height = Math.max(1, Math.round(image.naturalHeight * scale));
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+
+    if (!context) {
+      throw new Error("This browser could not process the image.");
+    }
+
+    canvas.width = width;
+    canvas.height = height;
+    context.fillStyle = "#f6f6f2";
+    context.fillRect(0, 0, width, height);
+    context.drawImage(image, 0, 0, width, height);
+
+    return canvas.toDataURL("image/jpeg", uploadJpegQuality);
+  } finally {
+    URL.revokeObjectURL(objectUrl);
+  }
+}
+
 export function ProjectEditorPage({ projectId }: { projectId?: string }) {
   const router = useRouter();
   const { projects, loaded, maxOrder, upsertProject, deleteProject } = useProjects();
@@ -309,6 +375,47 @@ export function ProjectEditorPage({ projectId }: { projectId?: string }) {
     setDraft((current) => (current ? { ...current, [key]: value } : current));
   }
 
+  async function uploadCoverImage(fileList: FileList | null) {
+    const file = fileList?.[0];
+
+    if (!file) {
+      return;
+    }
+
+    try {
+      setNotice("Preparing cover image...");
+      const image = await prepareUploadedImage(file);
+      updateDraft("coverImage", image);
+      setNotice("Cover image uploaded. Save the project to keep it.");
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : "The image could not be uploaded.");
+    }
+  }
+
+  async function uploadGalleryImages(fileList: FileList | null) {
+    const files = Array.from(fileList || []);
+
+    if (!files.length) {
+      return;
+    }
+
+    try {
+      setNotice(`Preparing ${files.length} gallery image${files.length === 1 ? "" : "s"}...`);
+      const images = await Promise.all(files.map((file) => prepareUploadedImage(file)));
+      const nextImages = [...splitGalleryImages(galleryText), ...images];
+      setGalleryText(nextImages.join("\n"));
+      setNotice(`${images.length} gallery image${images.length === 1 ? "" : "s"} uploaded. Save the project to keep them.`);
+    } catch (error) {
+      setNotice(error instanceof Error ? error.message : "The gallery images could not be uploaded.");
+    }
+  }
+
+  function removeGalleryImage(indexToRemove: number) {
+    const nextImages = splitGalleryImages(galleryText).filter((_, index) => index !== indexToRemove);
+    setGalleryText(nextImages.join("\n"));
+    setNotice("Gallery image removed. Save the project to keep this change.");
+  }
+
   function buildProject(nextStatus?: Project["status"]) {
     if (!draft) {
       return undefined;
@@ -320,7 +427,7 @@ export function ProjectEditorPage({ projectId }: { projectId?: string }) {
       slug: slugify(draft.slug || draft.title || "untitled-project"),
       tools: splitList(toolsText),
       tags: splitList(tagsText),
-      galleryImages: splitList(galleryText),
+      galleryImages: splitGalleryImages(galleryText),
       order: Number(draft.order) || 0,
       status: nextStatus || draft.status,
     };
@@ -535,7 +642,31 @@ export function ProjectEditorPage({ projectId }: { projectId?: string }) {
           <section className="admin-panel side-panel">
             <PanelTitle>Cover Image</PanelTitle>
             <div className="cover-preview">
-              <img src={draft.coverImage} alt="" />
+              <img src={draft.coverImage || imageFallback} alt="" />
+            </div>
+            <div className="image-actions">
+              <label className="button button--light" htmlFor="cover-upload">
+                <Upload size={16} /> Upload Cover
+              </label>
+              <input
+                accept="image/*"
+                id="cover-upload"
+                onChange={(event) => {
+                  uploadCoverImage(event.target.files);
+                  event.target.value = "";
+                }}
+                type="file"
+              />
+              <button
+                className="button button--secondary"
+                type="button"
+                onClick={() => {
+                  updateDraft("coverImage", "");
+                  setNotice("Cover image removed. Save the project to keep this change.");
+                }}
+              >
+                <Trash2 size={16} /> Remove
+              </button>
             </div>
             <TextField
               label="Cover image path"
@@ -543,18 +674,41 @@ export function ProjectEditorPage({ projectId }: { projectId?: string }) {
               placeholder="/projects/example.svg"
               onChange={(value) => updateDraft("coverImage", value)}
             />
-            <small>Recommended: 1920x1080px landscape. Local paths work for now.</small>
+            <small>
+              Uploads are stored in this browser for Version 1. Use landscape cover images where
+              possible.
+            </small>
           </section>
 
           <section className="admin-panel side-panel">
             <PanelTitle>Gallery</PanelTitle>
             <div className="gallery-preview">
-              {splitList(galleryText)
-                .slice(0, 4)
-                .map((image, index) => (
-                  <img src={image} alt="" key={`${image}-${index}`} />
-                ))}
-              <span className="gallery-drop">Drop images</span>
+              {splitGalleryImages(galleryText).map((image, index) => (
+                <div className="gallery-preview__item" key={`${image}-${index}`}>
+                  <img src={image} alt="" />
+                  <button
+                    aria-label="Remove gallery image"
+                    type="button"
+                    onClick={() => removeGalleryImage(index)}
+                  >
+                    <Trash2 size={14} />
+                  </button>
+                </div>
+              ))}
+              <label className="gallery-drop" htmlFor="gallery-upload">
+                <ImagePlus size={18} />
+                Upload images
+              </label>
+              <input
+                accept="image/*"
+                id="gallery-upload"
+                multiple
+                onChange={(event) => {
+                  uploadGalleryImages(event.target.files);
+                  event.target.value = "";
+                }}
+                type="file"
+              />
             </div>
             <TextareaField
               label="Gallery image paths"

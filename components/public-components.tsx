@@ -8,6 +8,7 @@ import { findProjectBySlug, Project, publicProjects } from "@/lib/projects";
 import { useProjects } from "@/lib/project-storage";
 
 type ButtonTone = "primary" | "secondary" | "dark" | "light";
+const imageFallback = "/projects/social-house.svg";
 
 function ButtonLink({
   href,
@@ -111,7 +112,7 @@ export function EditorialMarquee({ items }: { items: string[] }) {
 function ProjectImage({ project }: { project: Project }) {
   return (
     <div className="project-image-shell">
-      <img src={project.coverImage} alt="" decoding="async" loading="lazy" />
+      <img src={project.coverImage || imageFallback} alt="" decoding="async" loading="lazy" />
     </div>
   );
 }
@@ -280,9 +281,9 @@ export function CaseStudyView({
   preview?: boolean;
 }) {
   const galleryImages =
-    project.galleryImages.length > 0 ? project.galleryImages : [project.coverImage];
+    project.galleryImages.length > 0 ? project.galleryImages : [project.coverImage || imageFallback];
   const designImages = galleryImages.filter((image) => image !== project.coverImage);
-  const caseHeroImage = designImages[0] ?? project.coverImage;
+  const caseHeroImage = designImages[0] ?? project.coverImage ?? imageFallback;
   const visibleGalleryImages = galleryImages.filter((image) => image !== caseHeroImage);
 
   return (

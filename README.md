@@ -55,6 +55,8 @@ Only projects with `status: "published"` and `hidden: false` appear on `/portfol
 ## Images For Now
 
 Cover and gallery fields currently accept image paths or URLs as plain text.
+The admin editor also supports uploading images from your device for Version 1. These uploads
+are compressed in the browser and saved to local browser storage with the project entry.
 
 Imported portfolio assets live in:
 
@@ -75,7 +77,9 @@ Example image path:
 /portfolio-assets/kleinkrans/cover.png
 ```
 
-To replace an image now, add the file to `public/portfolio-assets/` or another folder inside `public/`, then update the path in admin. Real uploads and hosted asset storage will be handled later.
+To replace an image now, either upload it in the admin editor or add the file to
+`public/portfolio-assets/` or another folder inside `public/`, then update the path in admin.
+Real cloud uploads and hosted asset storage will be handled later.
 
 ## Local Data
 
