@@ -110,14 +110,6 @@ export function EditorialMarquee({ items }: { items: string[] }) {
   );
 }
 
-function ProjectImage({ project }: { project: Project }) {
-  return (
-    <div className="project-image-shell">
-      <img src={project.coverImage || imageFallback} alt="" decoding="async" loading="lazy" />
-    </div>
-  );
-}
-
 function CaseStudyImage({
   src,
   priority = false,
@@ -127,7 +119,7 @@ function CaseStudyImage({
 }) {
   const [imageWidth, setImageWidth] = useState<number>();
   const imageRef = useRef<HTMLImageElement>(null);
-  const cappedWidth = imageWidth ? Math.min(imageWidth, 1420) : 1420;
+  const cappedWidth = imageWidth || 1420;
 
   function captureNaturalWidth(image: HTMLImageElement) {
     if (image.naturalWidth > 0) {
@@ -162,29 +154,29 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
 
   return (
     <article className={`work-card ${isWide ? "work-card--wide" : ""}`}>
-      <Link href={`/projects/${project.slug}`} aria-label={`View ${project.title}`}>
-        <ProjectImage project={project} />
-      </Link>
-      <div className="work-card__meta">
-        <div className="mini-pills">
-          <span>{project.category}</span>
-          <span>{project.year}</span>
-        </div>
-        {project.featured ? <span className="featured-dot">Featured</span> : null}
-      </div>
-      <div className="work-card__copy">
-        <div>
-          <h3>{project.title}</h3>
-          <p>{project.shortDescription}</p>
-          <div className="tag-row">
-            {project.tags.slice(0, 3).map((tag) => (
-              <span key={tag}>{tag}</span>
-            ))}
+      <div className="work-card__panel">
+        <div className="work-card__meta">
+          <div className="mini-pills">
+            <span>{project.category}</span>
+            <span>{project.year}</span>
           </div>
+          {project.featured ? <span className="featured-dot">Featured</span> : null}
         </div>
-        <Link className="case-button" href={`/projects/${project.slug}`}>
-          View Case Study
+        <Link href={`/projects/${project.slug}`} aria-label={`View ${project.title}`}>
+          <h3>{project.title}</h3>
         </Link>
+        <p className="work-card__kind">{project.category}</p>
+        <div className="work-card__copy">
+          <p>{project.shortDescription}</p>
+          <Link className="case-button" href={`/projects/${project.slug}`}>
+            View Case Study
+          </Link>
+        </div>
+        <div className="tag-row">
+          {project.tags.slice(0, 3).map((tag) => (
+            <span key={tag}>{tag}</span>
+          ))}
+        </div>
       </div>
     </article>
   );
