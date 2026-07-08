@@ -33,8 +33,8 @@ import {
 } from "@/lib/project-storage";
 
 const imageFallback = "/projects/social-house.svg";
-const maxUploadedImageEdge = 2600;
-const uploadJpegQuality = 0.88;
+const maxUploadedImageEdge = 3600;
+const uploadImageQuality = 0.94;
 
 export function AdminShell({ children }: { children: React.ReactNode }) {
   const [unlocked, setUnlocked] = useState(false);
@@ -311,7 +311,13 @@ async function prepareUploadedImage(file: File) {
     context.fillRect(0, 0, width, height);
     context.drawImage(image, 0, 0, width, height);
 
-    return canvas.toDataURL("image/jpeg", uploadJpegQuality);
+    const webpImage = canvas.toDataURL("image/webp", uploadImageQuality);
+
+    if (webpImage.startsWith("data:image/webp")) {
+      return webpImage;
+    }
+
+    return canvas.toDataURL("image/jpeg", uploadImageQuality);
   } finally {
     URL.revokeObjectURL(objectUrl);
   }

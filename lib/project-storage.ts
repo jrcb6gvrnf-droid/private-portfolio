@@ -21,43 +21,100 @@ const PROJECT_ORDER_OVERRIDES: Record<string, number> = {
   "proj-brainwashed": 7,
 };
 const OPTIMIZED_IMAGE_PATHS: Record<string, string> = {
-  "/portfolio-assets/africology/cover.png": "/portfolio-assets/africology/cover.jpeg",
-  "/portfolio-assets/africology/screen-1.png": "/portfolio-assets/africology/screen-1.jpeg",
-  "/portfolio-assets/africology/screen-2.png": "/portfolio-assets/africology/screen-2.jpeg",
-  "/portfolio-assets/brainwashed/cover.png": "/portfolio-assets/brainwashed/cover.jpeg",
+  "/portfolio-assets/africology/cover.png": "/portfolio-assets/africology/cover.webp",
+  "/portfolio-assets/africology/cover.jpeg": "/portfolio-assets/africology/cover.webp",
+  "/portfolio-assets/africology/screen-1.png": "/portfolio-assets/africology/screen-1.webp",
+  "/portfolio-assets/africology/screen-1.jpeg": "/portfolio-assets/africology/screen-1.webp",
+  "/portfolio-assets/africology/screen-2.png": "/portfolio-assets/africology/screen-2.webp",
+  "/portfolio-assets/africology/screen-2.jpeg": "/portfolio-assets/africology/screen-2.webp",
+  "/portfolio-assets/brainwashed/cover.png": "/portfolio-assets/brainwashed/cover.webp",
+  "/portfolio-assets/brainwashed/cover.jpeg": "/portfolio-assets/brainwashed/cover.webp",
   "/portfolio-assets/brainwashed/refined-mockup.png":
-    "/portfolio-assets/brainwashed/refined-mockup.jpeg",
-  "/portfolio-assets/brainwashed/style-tile.png": "/portfolio-assets/brainwashed/style-tile.jpeg",
+    "/portfolio-assets/brainwashed/refined-mockup.webp",
+  "/portfolio-assets/brainwashed/refined-mockup.jpeg":
+    "/portfolio-assets/brainwashed/refined-mockup.webp",
+  "/portfolio-assets/brainwashed/style-tile.png": "/portfolio-assets/brainwashed/style-tile.webp",
+  "/portfolio-assets/brainwashed/style-tile.jpeg": "/portfolio-assets/brainwashed/style-tile.webp",
   "/portfolio-assets/brainwashed/style-tile-2.png":
-    "/portfolio-assets/brainwashed/style-tile-2.jpeg",
+    "/portfolio-assets/brainwashed/style-tile-2.webp",
+  "/portfolio-assets/brainwashed/style-tile-2.jpeg":
+    "/portfolio-assets/brainwashed/style-tile-2.webp",
   "/portfolio-assets/darling-cellars/before-after-mockup.png":
-    "/portfolio-assets/darling-cellars/before-after-mockup.jpeg",
-  "/portfolio-assets/darling-cellars/cover.png": "/portfolio-assets/darling-cellars/cover.jpeg",
+    "/portfolio-assets/darling-cellars/before-after-mockup.webp",
+  "/portfolio-assets/darling-cellars/before-after-mockup.jpeg":
+    "/portfolio-assets/darling-cellars/before-after-mockup.webp",
+  "/portfolio-assets/darling-cellars/cover.png": "/portfolio-assets/darling-cellars/cover.webp",
+  "/portfolio-assets/darling-cellars/cover.jpeg": "/portfolio-assets/darling-cellars/cover.webp",
+  "/portfolio-assets/darling-cellars/phone-mockup.jpg":
+    "/portfolio-assets/darling-cellars/phone-mockup.webp",
   "/portfolio-assets/darling-cellars/youtube-banner.png":
-    "/portfolio-assets/darling-cellars/youtube-banner.jpeg",
+    "/portfolio-assets/darling-cellars/youtube-banner.webp",
+  "/portfolio-assets/darling-cellars/youtube-banner.jpeg":
+    "/portfolio-assets/darling-cellars/youtube-banner.webp",
   "/portfolio-assets/darling-cellars/youtube-mockup.png":
-    "/portfolio-assets/darling-cellars/youtube-mockup.jpeg",
+    "/portfolio-assets/darling-cellars/youtube-mockup.webp",
+  "/portfolio-assets/darling-cellars/youtube-mockup.jpeg":
+    "/portfolio-assets/darling-cellars/youtube-mockup.webp",
   "/portfolio-assets/jeras/boran-joernaal-ad.png":
     "/portfolio-assets/jeras/boran-joernaal-ad.jpeg",
-  "/portfolio-assets/jeras/cover.png": "/portfolio-assets/jeras/cover.jpeg",
+  "/portfolio-assets/jeras/cover.png": "/portfolio-assets/jeras/cover.webp",
+  "/portfolio-assets/jeras/cover.jpeg": "/portfolio-assets/jeras/cover.webp",
   "/portfolio-assets/kleinkrans/artboard-6.png":
-    "/portfolio-assets/kleinkrans/artboard-6.jpeg",
+    "/portfolio-assets/kleinkrans/artboard-6.webp",
+  "/portfolio-assets/kleinkrans/artboard-6.jpeg":
+    "/portfolio-assets/kleinkrans/artboard-6.webp",
   "/portfolio-assets/kleinkrans/artboard-7.png":
-    "/portfolio-assets/kleinkrans/artboard-7.jpeg",
+    "/portfolio-assets/kleinkrans/artboard-7.webp",
+  "/portfolio-assets/kleinkrans/artboard-7.jpeg":
+    "/portfolio-assets/kleinkrans/artboard-7.webp",
   "/portfolio-assets/kleinkrans/artboard-8.png":
-    "/portfolio-assets/kleinkrans/artboard-8.jpeg",
+    "/portfolio-assets/kleinkrans/artboard-8.webp",
+  "/portfolio-assets/kleinkrans/artboard-8.jpeg":
+    "/portfolio-assets/kleinkrans/artboard-8.webp",
   "/portfolio-assets/kleinkrans/artboard-9.png":
-    "/portfolio-assets/kleinkrans/artboard-9.jpeg",
-  "/portfolio-assets/kleinkrans/cover.png": "/portfolio-assets/kleinkrans/cover.jpeg",
+    "/portfolio-assets/kleinkrans/artboard-9.webp",
+  "/portfolio-assets/kleinkrans/artboard-9.jpeg":
+    "/portfolio-assets/kleinkrans/artboard-9.webp",
+  "/portfolio-assets/kleinkrans/cover.png": "/portfolio-assets/kleinkrans/cover.webp",
+  "/portfolio-assets/kleinkrans/cover.jpeg": "/portfolio-assets/kleinkrans/cover.webp",
   "/portfolio-assets/kleinkrans/egg-carton-sleeve.png":
     "/portfolio-assets/kleinkrans/egg-carton-sleeve.jpeg",
-  "/portfolio-assets/paycentral-portal/cover.png": "/portfolio-assets/paycentral-portal/cover.jpeg",
+  "/portfolio-assets/paycentral-portal/cover.png": "/portfolio-assets/paycentral-portal/cover.webp",
+  "/portfolio-assets/paycentral-portal/cover.jpeg": "/portfolio-assets/paycentral-portal/cover.webp",
   "/portfolio-assets/paycentral-portal/full-light-page.png":
-    "/portfolio-assets/paycentral-portal/full-light-page.jpeg",
+    "/portfolio-assets/paycentral-portal/v1-designs/1.webp",
+  "/portfolio-assets/paycentral-portal/full-light-page.jpeg":
+    "/portfolio-assets/paycentral-portal/v1-designs/1.webp",
   "/portfolio-assets/paycentral-portal/full-v2-page.png":
-    "/portfolio-assets/paycentral-portal/full-v2-page.jpeg",
-  "/portfolio-assets/waddle/screen-2.png": "/portfolio-assets/waddle/screen-2.jpeg",
-  "/portfolio-assets/waddle/cover.png": "/portfolio-assets/waddle/cover.jpeg",
+    "/portfolio-assets/paycentral-portal/v2-designs/1.webp",
+  "/portfolio-assets/paycentral-portal/full-v2-page.jpeg":
+    "/portfolio-assets/paycentral-portal/v2-designs/1.webp",
+  "/portfolio-assets/paycentral-portal/v1-designs/1.png":
+    "/portfolio-assets/paycentral-portal/v1-designs/1.webp",
+  "/portfolio-assets/paycentral-portal/v1-designs/2.png":
+    "/portfolio-assets/paycentral-portal/v1-designs/2.webp",
+  "/portfolio-assets/paycentral-portal/v1-designs/3.png":
+    "/portfolio-assets/paycentral-portal/v1-designs/3.webp",
+  "/portfolio-assets/paycentral-portal/v1-designs/4.png":
+    "/portfolio-assets/paycentral-portal/v1-designs/4.webp",
+  "/portfolio-assets/paycentral-portal/v1-designs/5.png":
+    "/portfolio-assets/paycentral-portal/v1-designs/4.webp",
+  "/portfolio-assets/paycentral-portal/v2-designs/1.png":
+    "/portfolio-assets/paycentral-portal/v2-designs/1.webp",
+  "/portfolio-assets/paycentral-portal/v2-designs/2.png":
+    "/portfolio-assets/paycentral-portal/v2-designs/2.webp",
+  "/portfolio-assets/paycentral-portal/v2-designs/3.png":
+    "/portfolio-assets/paycentral-portal/v2-designs/3.webp",
+  "/portfolio-assets/paycentral-portal/v2-designs/4.png":
+    "/portfolio-assets/paycentral-portal/v2-designs/4.webp",
+  "/portfolio-assets/paycentral-portal/v2-designs/5.png":
+    "/portfolio-assets/paycentral-portal/v2-designs/5.webp",
+  "/portfolio-assets/paycentral-portal/v2-designs/6.png":
+    "/portfolio-assets/paycentral-portal/v2-designs/6.webp",
+  "/portfolio-assets/waddle/screen-2.png": "/portfolio-assets/waddle/screen-2.webp",
+  "/portfolio-assets/waddle/screen-2.jpeg": "/portfolio-assets/waddle/screen-2.webp",
+  "/portfolio-assets/waddle/cover.png": "/portfolio-assets/waddle/cover.webp",
+  "/portfolio-assets/waddle/cover.jpeg": "/portfolio-assets/waddle/cover.webp",
 };
 
 export function slugify(value: string) {

@@ -74,7 +74,7 @@ public/cv/
 Example image path:
 
 ```txt
-/portfolio-assets/kleinkrans/cover.png
+/portfolio-assets/kleinkrans/cover.webp
 ```
 
 To replace an image now, either upload it in the admin editor or add the file to

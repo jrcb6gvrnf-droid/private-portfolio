@@ -4,6 +4,7 @@
 
 import Link from "next/link";
 import { Download, Mail, MessageCircle, Sparkles } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { findProjectBySlug, Project, publicProjects } from "@/lib/projects";
 import { useProjects } from "@/lib/project-storage";
 
@@ -114,6 +115,45 @@ function ProjectImage({ project }: { project: Project }) {
     <div className="project-image-shell">
       <img src={project.coverImage || imageFallback} alt="" decoding="async" loading="lazy" />
     </div>
+  );
+}
+
+function CaseStudyImage({
+  src,
+  priority = false,
+}: {
+  src: string;
+  priority?: boolean;
+}) {
+  const [imageWidth, setImageWidth] = useState<number>();
+  const imageRef = useRef<HTMLImageElement>(null);
+  const cappedWidth = imageWidth ? Math.min(imageWidth, 1420) : 1420;
+
+  function captureNaturalWidth(image: HTMLImageElement) {
+    if (image.naturalWidth > 0) {
+      setImageWidth(image.naturalWidth);
+    }
+  }
+
+  useEffect(() => {
+    const image = imageRef.current;
+
+    if (image?.complete) {
+      captureNaturalWidth(image);
+    }
+  }, [src]);
+
+  return (
+    <img
+      ref={imageRef}
+      src={src}
+      alt=""
+      decoding="async"
+      fetchPriority={priority ? "high" : undefined}
+      loading={priority ? undefined : "lazy"}
+      style={{ "--case-image-width": `${cappedWidth}px` } as React.CSSProperties}
+      onLoad={(event) => captureNaturalWidth(event.currentTarget)}
+    />
   );
 }
 
@@ -282,9 +322,8 @@ export function CaseStudyView({
 }) {
   const galleryImages =
     project.galleryImages.length > 0 ? project.galleryImages : [project.coverImage || imageFallback];
-  const designImages = galleryImages.filter((image) => image !== project.coverImage);
-  const caseHeroImage = designImages[0] ?? project.coverImage ?? imageFallback;
-  const visibleGalleryImages = galleryImages.filter((image) => image !== caseHeroImage);
+  const caseHeroImage = galleryImages[0] ?? project.coverImage ?? imageFallback;
+  const visibleGalleryImages = galleryImages.slice(1);
 
   return (
     <main className="case-shell">
@@ -314,7 +353,7 @@ export function CaseStudyView({
         </aside>
       </section>
       <section className="case-cover">
-        <img src={caseHeroImage} alt="" decoding="async" fetchPriority="high" />
+        <CaseStudyImage src={caseHeroImage} priority />
       </section>
 
       <EditorialMarquee items={project.tags.length ? project.tags : ["IDENTITY DESIGN", "UI/UX DESIGN"]} />
@@ -338,7 +377,7 @@ export function CaseStudyView({
               className={`gallery-frame gallery-frame--${(index % 3) + 1}`}
               key={`${image}-${index}`}
             >
-              <img src={image} alt="" decoding="async" loading="lazy" />
+              <CaseStudyImage src={image} />
             </div>
           ))}
         </section>

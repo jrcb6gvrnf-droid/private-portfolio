@@ -732,8 +732,8 @@ img {
 }
 
 .case-cover img {
-  width: 100%;
-  max-width: 1420px;
+  width: min(100%, var(--case-image-width, 1420px));
+  max-width: 100%;
   height: auto;
   margin: 0 auto;
   object-fit: contain;
@@ -816,8 +816,10 @@ img {
 }
 
 .gallery-frame img {
-  width: 100%;
+  width: min(100%, var(--case-image-width, 1420px));
+  max-width: 100%;
   height: auto;
+  margin: 0 auto;
   object-fit: contain;
 }
 
