@@ -123,7 +123,8 @@ function CaseStudyImage({
 
   function captureNaturalWidth(image: HTMLImageElement) {
     if (image.naturalWidth > 0) {
-      setImageWidth(image.naturalWidth);
+      const pixelRatio = typeof window === "undefined" ? 1 : Math.max(1, window.devicePixelRatio);
+      setImageWidth(Math.max(320, Math.floor(image.naturalWidth / pixelRatio)));
     }
   }
 
