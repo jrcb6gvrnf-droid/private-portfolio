@@ -10,6 +10,21 @@ import { useProjects } from "@/lib/project-storage";
 
 type ButtonTone = "primary" | "secondary" | "dark" | "light";
 const imageFallback = "/projects/social-house.svg";
+const clientLogos = [
+  { name: "Stretch", src: "/logos/client-strip/stretch.png" },
+  { name: "Woolworths", src: "/logos/client-strip/woolworths.png" },
+  { name: "Hello Paisa", src: "/logos/client-strip/hello-paisa.png" },
+  { name: "Africology", src: "/logos/client-strip/africology.png" },
+  { name: "Elephants Alive", src: "/logos/client-strip/elephants-alive.png" },
+  { name: "Glasfit", src: "/logos/client-strip/glasfit.png" },
+  { name: "NUMSA", src: "/logos/client-strip/numsa.png" },
+  { name: "PayCentral", src: "/logos/client-strip/paycentral.png" },
+  { name: "AgriHawk", src: "/logos/client-strip/agrihawk.png" },
+  { name: "DJI Agriculture", src: "/logos/client-strip/dji-agriculture.png" },
+  { name: "Jeras", src: "/logos/client-strip/jeras.png" },
+  { name: "Insight", src: "/logos/client-strip/insight.png" },
+  { name: "Kleinkrans", src: "/logos/client-strip/kleinkrans.png" },
+];
 
 function ButtonLink({
   href,
@@ -110,6 +125,28 @@ export function EditorialMarquee({ items }: { items: string[] }) {
   );
 }
 
+function ClientLogoStrip() {
+  const repeated = [...clientLogos, ...clientLogos];
+
+  return (
+    <section className="client-logo-strip" aria-label="Selected client logos">
+      <div className="client-logo-strip__track">
+        {repeated.map((logo, index) => (
+          <span className="client-logo-strip__item" key={`${logo.name}-${index}`}>
+            <img
+              src={logo.src}
+              alt={index < clientLogos.length ? logo.name : ""}
+              aria-hidden={index >= clientLogos.length}
+              decoding="async"
+              loading={index < 6 ? "eager" : "lazy"}
+            />
+          </span>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function CaseStudyImage({
   src,
   priority = false,
@@ -193,7 +230,9 @@ export function PortfolioPage() {
       <section className="hero-section">
         <div className="hero-copy">
           <span className="label-pill">PRIVATE PORTFOLIO</span>
-          <h1>HEY, I&apos;M GENÉ</h1>
+          <h1>
+            HEY, I&apos;M <em>GENÉ</em>
+          </h1>
           <p>
             I&apos;m a UI/UX designer and digital designer creating thoughtful digital
             products, bold brand systems and scroll-stopping visual content.
@@ -215,9 +254,7 @@ export function PortfolioPage() {
         </div>
       </section>
 
-      <EditorialMarquee
-        items={["UI/UX DESIGN", "BRAND SYSTEMS", "WEB DESIGN", "SOCIAL CONTENT"]}
-      />
+      <ClientLogoStrip />
 
       <section className="section-pad selected-work" id="work">
         <div className="section-heading">

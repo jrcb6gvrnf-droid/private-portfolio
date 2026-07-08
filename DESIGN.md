@@ -1,10 +1,10 @@
 # Design Direction
 
-This file preserves the Stitch visual direction for Version 1. Future changes should refine the implementation, not redesign it.
+This file preserves the current Stitch visual direction for Version 1. Future changes should refine the implementation, not redesign it.
 
 ## Source Of Truth
 
-Use the exported Stitch screenshots in `public/reference/` as the visual reference until the Figma MCP limit resets:
+Use the exported Stitch screenshots in `public/reference/` plus the July 2026 Stitch export in the local design archive as the visual reference until a Figma comparison pass is available.
 
 - `portfolio-landing-page.png`
 - `case-study-editorial-layout.png`
@@ -15,45 +15,47 @@ Large PDF exports should stay outside Git and GitHub because they exceed hosting
 
 ## Visual Personality
 
-The site should feel playful, editorial and portfolio-led: bold type, confident spacing, collage cards, slightly tactile shadows, soft paper backgrounds and sharp neon accents.
+The public portfolio should now feel soulful, airy and editorial: high-contrast serif headlines, generous paper space, periwinkle colour blocking, soft mauve/gold accents, rounded portrait moments and a refined client-logo strip.
 
-Do not turn it into a generic SaaS, agency landing page or minimal white portfolio.
+Do not turn it into a generic SaaS, agency landing page, dark neon portfolio or minimal white template.
 
 ## Colour Palette
 
-- Paper background: warm off-white, close to `#f6f6f2`.
-- Ink: dark charcoal green/black, close to `#222725`.
-- Neon accent: acid lime, close to `#dfff00`.
-- Lavender: soft UI/editorial accent, close to `#e7e4ff`.
-- Olive: small labels and metadata, close to `#6f821c`.
+- Paper background: warm editorial off-white, close to `#fcf9f4`.
+- Ink: soft near-black, close to `#1c1c19`.
+- Primary periwinkle: `#475a92`.
+- Soft periwinkle: `#dfe5ff`.
+- Soft mauve/pink: `#77536f` and `#f7d1ed`.
+- Warm gold accent: `#efbf67`.
 - Danger: restrained red for delete actions.
 
-Avoid drifting into purple-gradient, beige-only, dark-blue or corporate grey palettes.
+Avoid drifting into acid-lime/black, purple-gradient, beige-only, dark-blue or corporate grey palettes.
 
 ## Typography
 
-- Display headings use a heavy condensed uppercase feel.
-- Body copy keeps a softer editorial serif feel.
-- Navigation, labels, pills and admin metadata use compact uppercase sans-serif.
-- Headings should be large and punchy, but compact cards and admin controls must use smaller sizes so text does not overflow.
+- Display headings use Playfair Display or a similar high-contrast editorial serif.
+- Body copy uses a clean, readable sans-serif such as DM Sans.
+- Navigation, labels, pills and admin metadata use compact uppercase UI sans-serif.
+- Headings should feel confident and editorial, but compact cards and admin controls must use smaller sizes so text does not overflow.
 
 Do not use negative letter spacing. Do not scale type directly with viewport width outside controlled `clamp()` ranges.
 
 ## Layout Style
 
-- Public pages use generous full-width sections.
-- The landing hero places the big introduction on the left with a layered collage on the right.
-- Selected work uses an asymmetrical editorial grid with large image-first project cards.
-- About is a dark full-width band with image and copy side by side.
-- Process cards are simple, chunky, tactile and evenly spaced.
-- Contact uses a lavender editorial panel with an acid-lime corner detail.
+- Public pages use generous full-width sections and strong side padding.
+- The landing hero places the big introduction on the left with Gené's portrait on the right.
+- The old text carousel is replaced by a periwinkle client-logo strip with white logos.
+- Selected work uses text-first editorial project cards, not pixelated preview thumbnails.
+- About is a full-width periwinkle band with image and copy side by side.
+- Process cards are simple, soft and evenly spaced.
+- Contact uses a periwinkle editorial panel with light mauve buttons.
 
 Avoid nested cards and floating page sections. Cards should be used for actual repeated items, forms, panels and modals.
 
 ## Buttons
 
-- Primary buttons are acid lime with dark offset shadow.
-- Secondary buttons are lavender or dark depending on context.
+- Primary public buttons use mauve or periwinkle with soft shadow.
+- Secondary public buttons use pale mauve or light paper tones.
 - Buttons are pill-shaped, compact, bold and uppercase.
 - Admin destructive actions use red and always require confirmation.
 
@@ -61,12 +63,13 @@ Avoid nested cards and floating page sections. Cards should be used for actual r
 
 Cards should include:
 
-- strong cover image area
 - small category/year pills
-- title in heavy display type
+- title in editorial display type
 - short description
 - tags
 - compact “View Case Study” button
+
+Public portfolio cards should remain text-first unless new high-resolution project preview assets are provided.
 
 Draft and hidden projects must never appear on the public portfolio.
 
