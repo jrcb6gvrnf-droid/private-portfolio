@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import Link from "next/link";
-import { Download, Mail, MessageCircle, Sparkles } from "lucide-react";
+import { Download, Mail, MessageCircle } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { findProjectBySlug, Project, publicProjects } from "@/lib/projects";
 import { useProjects } from "@/lib/project-storage";
@@ -231,7 +231,8 @@ export function PortfolioPage() {
         <div className="hero-copy">
           <span className="label-pill">PRIVATE PORTFOLIO</span>
           <h1>
-            HEY, I&apos;M <em>GENÉ</em>
+            <span>HEY, I&apos;M</span>
+            <em>GENÉ</em>
           </h1>
           <p>
             I&apos;m a UI/UX designer and digital designer creating thoughtful digital
@@ -245,9 +246,6 @@ export function PortfolioPage() {
           </div>
         </div>
         <div className="hero-collage" aria-hidden="true">
-          <div className="spark-disc">
-            <Sparkles size={32} strokeWidth={2.6} />
-          </div>
           <div className="hero-card hero-card--portrait">
             <img src="/images/gene-portrait.jpg" alt="" decoding="async" fetchPriority="high" />
           </div>
