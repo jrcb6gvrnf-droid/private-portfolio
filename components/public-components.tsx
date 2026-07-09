@@ -11,18 +11,16 @@ import { useProjects } from "@/lib/project-storage";
 type ButtonTone = "primary" | "secondary" | "dark" | "light";
 const imageFallback = "/projects/social-house.svg";
 const clientLogos = [
-  { name: "Stretch", src: "/logos/client-strip/stretch.png" },
-  { name: "Woolworths", src: "/logos/client-strip/woolworths.png" },
-  { name: "Hello Paisa", src: "/logos/client-strip/hello-paisa.png" },
-  { name: "Africology", src: "/logos/client-strip/africology.png" },
-  { name: "Elephants Alive", src: "/logos/client-strip/elephants-alive.png" },
-  { name: "Glasfit", src: "/logos/client-strip/glasfit.png" },
-  { name: "NUMSA", src: "/logos/client-strip/numsa.png" },
   { name: "PayCentral", src: "/logos/client-strip/paycentral.png" },
-  { name: "AgriHawk", src: "/logos/client-strip/agrihawk.png" },
-  { name: "DJI Agriculture", src: "/logos/client-strip/dji-agriculture.png" },
+  { name: "BTS", src: "/logos/client-strip/bts.png" },
+  { name: "Stretch", src: "/logos/client-strip/stretch.png" },
+  { name: "Africology", src: "/logos/client-strip/africology.png" },
+  { name: "Woolworths", src: "/logos/client-strip/woolworths.png" },
+  { name: "Capitec Bank", src: "/logos/client-strip/capitec.png" },
+  { name: "Glasfit", src: "/logos/client-strip/glasfit.png" },
+  { name: "Elephants Alive", src: "/logos/client-strip/elephants-alive.png" },
+  { name: "Darling Cellars", src: "/logos/client-strip/darling-cellars.png" },
   { name: "Jeras", src: "/logos/client-strip/jeras.png" },
-  { name: "Insight", src: "/logos/client-strip/insight.png" },
   { name: "Kleinkrans", src: "/logos/client-strip/kleinkrans.png" },
 ];
 
