@@ -23,6 +23,34 @@ const clientLogos = [
   { name: "Jeras", src: "/logos/client-strip/jeras.png" },
   { name: "Kleinkrans", src: "/logos/client-strip/kleinkrans.png" },
 ];
+const topSkills = [
+  "UX/UI Design",
+  "UX/UI Research",
+  "Social Media Design",
+  "UX Automation Consultant",
+  "AI Workflow Consultant for Small Businesses",
+  "Graphic Designer",
+  "Video Editing",
+  "Multimedia Designer",
+];
+const recognitionItems = [
+  {
+    label: "Finalist",
+    title: "Pendoring Awards finalist",
+  },
+  {
+    label: "Finalist",
+    title: "Top Vendor Wedding Awards finalist",
+  },
+  {
+    label: "Winner",
+    title: "Brand Activation winner for Nelson Mandela Children’s Hospital during my studies",
+  },
+  {
+    label: "Currently Studying",
+    title: "Actively completing qualifications in AI consultancy",
+  },
+];
 
 function ButtonLink({
   href,
@@ -251,6 +279,29 @@ export function PortfolioPage() {
       </section>
 
       <ClientLogoStrip />
+
+      <section className="skills-band" id="skills">
+        <div className="skills-band__intro">
+          <span>SKILLS &amp; RECOGNITION</span>
+          <h2>
+            A multidisciplinary skillset across UX, content, automation and AI
+            consultancy.
+          </h2>
+        </div>
+        <div className="skill-cloud" aria-label="Top skills">
+          {topSkills.map((skill) => (
+            <span key={skill}>{skill}</span>
+          ))}
+        </div>
+        <div className="recognition-grid" aria-label="Awards and recognition">
+          {recognitionItems.map((item) => (
+            <article key={item.title}>
+              <span>{item.label}</span>
+              <p>{item.title}</p>
+            </article>
+          ))}
+        </div>
+      </section>
 
       <section className="section-pad selected-work" id="work">
         <div className="section-heading">
