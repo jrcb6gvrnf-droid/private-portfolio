@@ -23,15 +23,47 @@ const clientLogos = [
   { name: "Jeras", src: "/logos/client-strip/jeras.png" },
   { name: "Kleinkrans", src: "/logos/client-strip/kleinkrans.png" },
 ];
-const topSkills = [
-  "UX/UI Design",
-  "UX/UI Research",
-  "Social Media Design",
-  "UX Automation Consultant",
-  "AI Workflow Consultant for Small Businesses",
-  "Graphic Designer",
-  "Video Editing",
-  "Multimedia Designer",
+const skillWebItems = [
+  {
+    title: "UX/UI Design",
+    detail: "flows, systems, interfaces",
+    position: "top-left",
+  },
+  {
+    title: "UX/UI Research",
+    detail: "users, journeys, insights",
+    position: "top-right",
+  },
+  {
+    title: "Social Media Design",
+    detail: "posts, stories, campaigns",
+    position: "middle-left",
+  },
+  {
+    title: "Graphic Designer",
+    detail: "branding, layouts, assets",
+    position: "middle-right",
+  },
+  {
+    title: "Video Editing",
+    detail: "short-form edits, motion",
+    position: "lower-left",
+  },
+  {
+    title: "Multimedia Designer",
+    detail: "digital content systems",
+    position: "lower-right",
+  },
+  {
+    title: "UX Automation Consultant",
+    detail: "process maps, smoother workflows",
+    position: "bottom-middle",
+  },
+  {
+    title: "AI Workflow Consultant for Small Businesses",
+    detail: "small business systems",
+    position: "bottom-low",
+  },
 ];
 const recognitionItems = [
   {
@@ -173,6 +205,53 @@ function ClientLogoStrip() {
   );
 }
 
+function SkillsWebGraphic() {
+  return (
+    <div className="skills-web" aria-label="Connected multidisciplinary skillset">
+      <svg
+        className="skills-web__lines"
+        viewBox="0 0 1200 640"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path d="M600 298 C490 195 380 150 245 132" />
+        <path d="M600 298 C710 195 820 150 955 132" />
+        <path d="M600 310 C430 252 310 255 160 285" />
+        <path d="M600 310 C770 252 890 255 1040 285" />
+        <path d="M600 330 C455 380 350 444 235 480" />
+        <path d="M600 330 C745 380 850 444 965 480" />
+        <path d="M600 368 C580 432 548 486 500 542" />
+        <path d="M600 368 C640 440 670 512 690 600" />
+        <path d="M245 132 C430 278 740 276 955 132" />
+        <path d="M160 285 C420 192 750 190 1040 285" />
+        <path d="M235 480 C430 356 785 356 965 480" />
+        <path d="M500 542 C425 410 385 276 245 132" />
+        <path d="M690 600 C760 430 830 295 955 132" />
+        <path d="M160 285 C360 420 640 460 1040 285" />
+        <circle cx="245" cy="132" r="7" />
+        <circle cx="955" cy="132" r="7" />
+        <circle cx="160" cy="285" r="7" />
+        <circle cx="1040" cy="285" r="7" />
+        <circle cx="235" cy="480" r="7" />
+        <circle cx="965" cy="480" r="7" />
+        <circle cx="500" cy="542" r="7" />
+        <circle cx="690" cy="600" r="7" />
+        <circle cx="600" cy="320" r="7" />
+      </svg>
+      <div className="skills-web__center">
+        <span>Integrated</span>
+        <strong>Creative Practice</strong>
+      </div>
+      {skillWebItems.map((skill) => (
+        <article className={`skills-web__node skills-web__node--${skill.position}`} key={skill.title}>
+          <h3>{skill.title}</h3>
+          <p>{skill.detail}</p>
+        </article>
+      ))}
+    </div>
+  );
+}
+
 function CaseStudyImage({
   src,
   priority = false,
@@ -282,17 +361,13 @@ export function PortfolioPage() {
 
       <section className="skills-band" id="skills">
         <div className="skills-band__intro">
-          <span>SKILLS &amp; RECOGNITION</span>
+          <span>SKILLS &amp; PRACTICE</span>
           <h2>
-            A multidisciplinary skillset across UX, content, automation and AI
-            consultancy.
+            A connected multidisciplinary skillset
           </h2>
+          <p>Design, content, communication and AI-supported workflows working together.</p>
         </div>
-        <div className="skill-cloud" aria-label="Top skills">
-          {topSkills.map((skill) => (
-            <span key={skill}>{skill}</span>
-          ))}
-        </div>
+        <SkillsWebGraphic />
         <div className="recognition-grid" aria-label="Awards and recognition">
           {recognitionItems.map((item) => (
             <article key={item.title}>
