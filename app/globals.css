@@ -17,10 +17,10 @@
   --danger: #c72626;
   --shadow: rgba(28, 28, 25, 0.18);
   --line: rgba(71, 90, 146, 0.16);
-  --display: var(--font-display), Georgia, "Times New Roman", serif;
-  --serif: var(--font-display), Georgia, "Times New Roman", serif;
-  --sans: var(--font-sans), Arial, Helvetica, sans-serif;
-  --ui: var(--font-ui), Arial, Helvetica, sans-serif;
+  --display: var(--font-montserrat), Arial, Helvetica, sans-serif;
+  --serif: var(--font-montserrat), Arial, Helvetica, sans-serif;
+  --sans: var(--font-montserrat), Arial, Helvetica, sans-serif;
+  --ui: var(--font-montserrat), Arial, Helvetica, sans-serif;
   --page-gutter: clamp(32px, 7vw, 132px);
 }
 
