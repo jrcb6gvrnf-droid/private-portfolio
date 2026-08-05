@@ -26,37 +26,37 @@ const clientLogos = [
 const skillWebItems = [
   {
     title: "UI/UX design",
-    detail: "flows, systems, interfaces",
+    detail: "Flows, systems, interfaces",
     position: "top-left",
   },
   {
     title: "Graphic design",
-    detail: "branding, layouts, assets",
+    detail: "Branding, layouts, assets",
     position: "top-right",
   },
   {
     title: "Social media content design",
-    detail: "posts, stories, visuals",
+    detail: "Posts, stories, visuals",
     position: "middle-left",
   },
   {
     title: "Social media content coordination",
-    detail: "planning, scheduling",
+    detail: "Planning, scheduling",
     position: "middle-right",
   },
   {
     title: "Content planning",
-    detail: "pillars, calendars",
+    detail: "Pillars, calendars",
     position: "lower-left",
   },
   {
     title: "Copywriting",
-    detail: "captions, messaging",
+    detail: "Captions, messaging",
     position: "lower-right",
   },
   {
     title: "AI-assisted creative workflow",
-    detail: "ideation, automation",
+    detail: "Ideation, automation",
     position: "bottom-middle",
   },
 ];
@@ -244,7 +244,7 @@ function SkillsWebGraphic() {
       </svg>
       <div className="skills-web__center">
         <span>Integrated</span>
-        <strong>creative practice</strong>
+        <strong>Creative practice</strong>
       </div>
       {skillWebItems.map((skill) => (
         <article className={`skills-web__node skills-web__node--${skill.position}`} key={skill.title}>
