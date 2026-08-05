@@ -3,7 +3,6 @@
 /* eslint-disable @next/next/no-img-element */
 
 import Link from "next/link";
-import { Download, Mail, MessageCircle } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { findProjectBySlug, Project, publicProjects } from "@/lib/projects";
 import { useProjects } from "@/lib/project-storage";
@@ -297,12 +296,13 @@ function CaseStudyImage({
 }
 
 export function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const isWide = index === 0 || index === 3;
+  const isWide = index === 0 || index === 4;
 
   return (
     <article className={`work-card ${isWide ? "work-card--wide" : ""}`}>
       <div className="work-card__panel">
         <div className="work-card__meta">
+          <span className="work-card__number">{String(index + 1).padStart(2, "0")}</span>
           <div className="mini-pills">
             <span>{project.category}</span>
             <span>{project.year}</span>
@@ -316,7 +316,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         <div className="work-card__copy">
           <p>{project.shortDescription}</p>
           <Link className="case-button" href={`/projects/${project.slug}`}>
-            View Case Study
+            View case study
           </Link>
         </div>
         <div className="tag-row">
@@ -337,27 +337,33 @@ export function PortfolioPage() {
     <main className="portfolio-shell">
       <PublicHeader />
       <section className="hero-section">
+        <div className="hero-kicker">
+          <span className="label-pill">Private portfolio</span>
+          <p>UI/UX / Brand systems / Social content / AI-assisted workflows</p>
+        </div>
         <div className="hero-copy">
-          <span className="label-pill">PRIVATE PORTFOLIO</span>
           <h1>
             <span>HEY, I&apos;M</span>
             <em>GENÉ</em>
           </h1>
           <p>
-            I&apos;m a UI/UX designer and digital designer creating thoughtful digital
-            products, bold brand systems and scroll-stopping visual content.
+            I design product flows, brand systems, websites and content systems
+            across UI/UX, visual design and AI-assisted workflows.
           </p>
           <div className="hero-actions">
-            <ButtonLink href="#work">VIEW MY WORK</ButtonLink>
-            <ButtonLink href="#contact" tone="secondary">
-              GET IN TOUCH
-            </ButtonLink>
+            <ButtonLink href="#work">View selected work</ButtonLink>
+            <a className="text-link" href="#contact">
+              Get in touch
+            </a>
           </div>
         </div>
         <div className="hero-collage" aria-hidden="true">
           <div className="hero-card hero-card--portrait">
             <img src="/images/gene-portrait.jpg" alt="" decoding="async" fetchPriority="high" />
           </div>
+          <p className="hero-annotation">
+            Product thinking, visual systems and content craft in one practice.
+          </p>
         </div>
       </section>
 
@@ -385,7 +391,7 @@ export function PortfolioPage() {
       <section className="section-pad selected-work" id="work">
         <div className="section-heading">
           <h2>SELECTED WORK</h2>
-          <p>A curation of digital products and visual experiments.</p>
+          <p>Product, brand and content work selected for range, role and evidence.</p>
         </div>
         <div className="work-grid">
           {visibleProjects.map((project, index) => (
@@ -412,7 +418,7 @@ export function PortfolioPage() {
             design systems to campaign visuals, brand identities and content systems.
           </p>
           <div className="about-tags">
-            {["UI/UX DESIGN", "BRANDING", "WEB DESIGN", "VISUAL CONTENT", "ART DIRECTION", "SOCIAL MEDIA"].map(
+            {["UI/UX design", "Branding", "Web design", "Visual content", "Art direction", "Social media"].map(
               (tag) => (
                 <span key={tag}>{tag}</span>
               ),
@@ -427,37 +433,40 @@ export function PortfolioPage() {
 
       <section className="section-pad process-section" id="process">
         <h2>HOW I WORK</h2>
-        <div className="process-grid">
+        <ol className="process-grid">
           {[
             ["THINK", "Understand the brief, users, business context and constraints."],
             ["DESIGN", "Turn ideas into clear, functional and visually strong solutions."],
             ["TEST", "Check usability, responsiveness and real-world fit."],
             ["REFINE", "Polish the details until the work feels intentional and complete."],
           ].map(([title, copy], index) => (
-            <article className={`process-card ${index === 1 ? "process-card--active" : ""}`} key={title}>
-              <span>{index === 0 ? "⌖" : index === 1 ? "↗" : index === 2 ? "⊙" : "✦"}</span>
-              <h3>{title}</h3>
-              <p>{copy}</p>
-            </article>
+            <li className="process-card" key={title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <div>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
       <section className="contact-panel" id="contact">
         <h2>LET&apos;S WORK TOGETHER</h2>
         <p>
-          Contact me on WhatsApp or email for project access, collaborations and
+          This private portfolio is shared selectively and updated as new work is
+          completed. Contact me on WhatsApp or email for access, collaborations and
           new opportunities.
         </p>
         <div className="contact-actions">
           <ExternalButton href="https://wa.me/27711145315" tone="light">
-            <MessageCircle size={16} /> WHATSAPP ME
+            WhatsApp me
           </ExternalButton>
           <ExternalButton href="mailto:g.e.n.e.designandmarketing@gmail.com" tone="light">
-            <Mail size={16} /> EMAIL ME
+            Email me
           </ExternalButton>
           <a className="button button--light" download href="/cv/gene-van-aswegen-cv.pdf">
-            <Download size={16} /> DOWNLOAD CV
+            Download CV
           </a>
         </div>
       </section>
@@ -546,18 +555,15 @@ export function CaseStudyView({
         <InfoCard label="OUTCOME" body={project.outcome} tone="lime" />
       </section>
 
-      <section className="quote-band">
-        <span>99</span>
-        <h2>THE FINAL DIRECTION FEELS CLEAR, INTENTIONAL AND READY TO USE.</h2>
-      </section>
-
       {nextProject ? (
         <section className="next-project">
-          <span>NEXT CASE STUDY</span>
-          <h2>{nextProject.title}</h2>
-          <p>{nextProject.shortDescription}</p>
+          <span>Next case study</span>
+          <div>
+            <h2>{nextProject.title}</h2>
+            <p>{nextProject.shortDescription}</p>
+          </div>
           <ButtonLink href={`/projects/${nextProject.slug}`} tone="light">
-            View Project
+            View project
           </ButtonLink>
         </section>
       ) : null}
