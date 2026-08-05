@@ -25,43 +25,43 @@ const clientLogos = [
 ];
 const skillWebItems = [
   {
-    title: "UX/UI Design",
+    title: "UI/UX Design",
     detail: "flows, systems, interfaces",
     position: "top-left",
   },
   {
-    title: "UX/UI Research",
-    detail: "users, journeys, insights",
+    title: "Graphic Design",
+    detail: "branding, layouts, assets",
     position: "top-right",
   },
   {
-    title: "Social Media Design",
-    detail: "posts, stories, campaigns",
+    title: "Social Media Content Design",
+    detail: "posts, stories, visuals",
     position: "middle-left",
   },
   {
-    title: "Graphic Designer",
-    detail: "branding, layouts, assets",
+    title: "Social Media Content Coordination",
+    detail: "planning, scheduling",
     position: "middle-right",
   },
   {
-    title: "Video Editing",
-    detail: "short-form edits, motion",
+    title: "Content Planning",
+    detail: "pillars, calendars",
     position: "lower-left",
   },
   {
-    title: "Multimedia Designer",
-    detail: "digital content systems",
+    title: "Copywriting",
+    detail: "captions, messaging",
     position: "lower-right",
   },
   {
-    title: "UX Automation Consultant",
-    detail: "process maps, smoother workflows",
+    title: "AI-Assisted Creative Workflow",
+    detail: "ideation, automation",
     position: "bottom-middle",
   },
   {
-    title: "AI Workflow Consultant for Small Businesses",
-    detail: "small business systems",
+    title: "Brand Communication",
+    detail: "voice, consistency",
     position: "bottom-low",
   },
 ];
@@ -214,29 +214,30 @@ function SkillsWebGraphic() {
         preserveAspectRatio="none"
         aria-hidden="true"
       >
-        <path d="M600 298 C490 195 380 150 245 132" />
-        <path d="M600 298 C710 195 820 150 955 132" />
-        <path d="M600 310 C430 252 310 255 160 285" />
-        <path d="M600 310 C770 252 890 255 1040 285" />
-        <path d="M600 330 C455 380 350 444 235 480" />
-        <path d="M600 330 C745 380 850 444 965 480" />
-        <path d="M600 368 C580 432 548 486 500 542" />
-        <path d="M600 368 C640 440 670 512 690 600" />
-        <path d="M245 132 C430 278 740 276 955 132" />
-        <path d="M160 285 C420 192 750 190 1040 285" />
-        <path d="M235 480 C430 356 785 356 965 480" />
-        <path d="M500 542 C425 410 385 276 245 132" />
-        <path d="M690 600 C760 430 830 295 955 132" />
-        <path d="M160 285 C360 420 640 460 1040 285" />
-        <circle cx="245" cy="132" r="7" />
-        <circle cx="955" cy="132" r="7" />
-        <circle cx="160" cy="285" r="7" />
-        <circle cx="1040" cy="285" r="7" />
-        <circle cx="235" cy="480" r="7" />
-        <circle cx="965" cy="480" r="7" />
-        <circle cx="500" cy="542" r="7" />
-        <circle cx="690" cy="600" r="7" />
-        <circle cx="600" cy="320" r="7" />
+        <path d="M388 122 C465 122 500 146 520 192" />
+        <path d="M812 122 C735 122 700 146 680 192" />
+        <path d="M340 292 L452 292" />
+        <path d="M860 292 L748 292" />
+        <path d="M412 430 C486 430 506 366 535 350" />
+        <path d="M788 430 C714 430 694 366 665 350" />
+        <path d="M600 368 L600 428" />
+        <path d="M600 508 L600 564" />
+        <circle cx="388" cy="122" r="7" />
+        <circle cx="520" cy="192" r="7" />
+        <circle cx="812" cy="122" r="7" />
+        <circle cx="680" cy="192" r="7" />
+        <circle cx="340" cy="292" r="7" />
+        <circle cx="452" cy="292" r="7" />
+        <circle cx="860" cy="292" r="7" />
+        <circle cx="748" cy="292" r="7" />
+        <circle cx="412" cy="430" r="7" />
+        <circle cx="535" cy="350" r="7" />
+        <circle cx="788" cy="430" r="7" />
+        <circle cx="665" cy="350" r="7" />
+        <circle cx="600" cy="368" r="7" />
+        <circle cx="600" cy="428" r="7" />
+        <circle cx="600" cy="508" r="7" />
+        <circle cx="600" cy="564" r="7" />
       </svg>
       <div className="skills-web__center">
         <span>Integrated</span>

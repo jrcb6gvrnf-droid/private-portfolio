@@ -359,32 +359,26 @@ img {
 .skills-band {
   position: relative;
   overflow: hidden;
-  padding: clamp(82px, 10vw, 140px) var(--page-gutter) clamp(96px, 11vw, 154px);
-  background: #fbfaf6;
-  color: var(--ink);
+  padding: clamp(82px, 9vw, 126px) var(--page-gutter) clamp(96px, 10vw, 132px);
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.1), transparent 34%),
+    linear-gradient(145deg, #5167a2 0%, #475a92 48%, #44588f 100%);
+  color: white;
   text-align: center;
 }
 
 .skills-band::after {
-  position: absolute;
-  right: clamp(28px, 7vw, 110px);
-  bottom: clamp(24px, 5vw, 72px);
-  width: clamp(76px, 10vw, 148px);
-  height: clamp(76px, 10vw, 148px);
-  border: 1px solid rgba(103, 80, 164, 0.1);
-  border-radius: 999px;
-  content: "";
+  display: none;
 }
 
 .skills-band::before {
   position: absolute;
-  top: clamp(34px, 5vw, 76px);
-  left: clamp(28px, 6vw, 96px);
-  width: clamp(88px, 12vw, 168px);
-  height: clamp(88px, 12vw, 168px);
-  border: 1px solid rgba(103, 80, 164, 0.1);
-  border-radius: 999px;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.08), transparent 24%),
+    radial-gradient(circle at 72% 72%, rgba(247, 209, 237, 0.08), transparent 30%);
   content: "";
+  pointer-events: none;
 }
 
 .skills-band__intro {
@@ -405,7 +399,7 @@ img {
 .skills-band h2 {
   margin: 18px 0 0;
   font-family: var(--display);
-  font-size: clamp(42px, 6vw, 92px);
+  font-size: clamp(52px, 7vw, 110px);
   font-weight: 800;
   line-height: 1.04;
 }
@@ -413,7 +407,7 @@ img {
 .skills-band__intro p {
   max-width: 780px;
   margin: 22px auto 0;
-  color: rgba(28, 28, 25, 0.66);
+  color: rgba(255, 255, 255, 0.82);
   font-size: clamp(17px, 1.6vw, 22px);
   line-height: 1.6;
 }
@@ -421,30 +415,30 @@ img {
 .skills-web {
   position: relative;
   z-index: 1;
-  width: min(100%, 1240px);
-  min-height: clamp(600px, 56vw, 760px);
-  margin: clamp(52px, 6vw, 82px) auto 0;
+  width: min(100%, 1160px);
+  min-height: clamp(520px, 47vw, 620px);
+  margin: clamp(48px, 5vw, 70px) auto 0;
 }
 
 .skills-web__lines {
   position: absolute;
-  inset: clamp(12px, 2vw, 26px) 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   overflow: visible;
-  filter: drop-shadow(0 12px 24px rgba(103, 80, 164, 0.08));
+  filter: drop-shadow(0 10px 18px rgba(24, 28, 54, 0.08));
 }
 
 .skills-web__lines path {
   fill: none;
-  stroke: rgba(174, 153, 211, 0.58);
+  stroke: rgba(221, 207, 250, 0.72);
   stroke-linecap: round;
-  stroke-width: 1.8;
+  stroke-width: 2.1;
 }
 
 .skills-web__lines circle {
-  fill: #b9a5dc;
-  stroke: #fbfaf6;
+  fill: #eadfff;
+  stroke: rgba(255, 255, 255, 0.88);
   stroke-width: 2;
 }
 
@@ -453,24 +447,25 @@ img {
   position: absolute;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(103, 80, 164, 0.18);
-  background: #fff;
-  color: var(--ink);
-  box-shadow: 0 18px 34px rgba(28, 28, 25, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  background: linear-gradient(145deg, #f3e7ff 0%, #eadbf7 100%);
+  color: #15172e;
+  box-shadow: 0 18px 34px rgba(24, 28, 54, 0.12);
   text-align: center;
 }
 
 .skills-web__center {
-  top: 48%;
+  top: 43%;
   left: 50%;
-  width: min(390px, 33%);
-  min-height: 168px;
+  width: min(360px, 32%);
+  min-height: 146px;
   border-radius: 999px;
-  padding: 30px 42px;
+  padding: 26px 38px;
   transform: translate(-50%, -50%);
-  border-color: rgba(103, 80, 164, 0.24);
-  background: #fff;
-  color: #1f2440;
+  border-color: rgba(221, 207, 250, 0.46);
+  background: rgba(71, 90, 146, 0.28);
+  box-shadow: none;
+  color: white;
 }
 
 .skills-web__center span,
@@ -483,10 +478,10 @@ img {
 }
 
 .skills-web__node {
-  width: min(310px, 24%);
-  min-height: 88px;
+  width: min(300px, 25%);
+  min-height: 82px;
   border-radius: 999px;
-  padding: 20px 28px;
+  padding: 18px 28px;
 }
 
 .skills-web__node h3 {
@@ -495,57 +490,57 @@ img {
   font-size: clamp(14px, 1.3vw, 18px);
   font-weight: 900;
   line-height: 1.2;
-  color: #1f2440;
+  color: #15172e;
 }
 
 .skills-web__node p {
   margin: 7px 0 0;
-  color: rgba(31, 36, 64, 0.62);
+  color: rgba(21, 23, 46, 0.72);
   font-size: clamp(12px, 1vw, 14px);
   line-height: 1.2;
 }
 
 .skills-web__node--top-left {
-  top: 6%;
-  left: 6%;
+  top: 4%;
+  left: 15%;
 }
 
 .skills-web__node--top-right {
-  top: 6%;
-  right: 6%;
+  top: 4%;
+  right: 15%;
 }
 
 .skills-web__node--middle-left {
-  top: 32%;
+  top: 28%;
   left: 0;
 }
 
 .skills-web__node--middle-right {
-  top: 32%;
+  top: 28%;
   right: 0;
 }
 
 .skills-web__node--lower-left {
-  top: 60%;
-  left: 6%;
+  top: 55%;
+  left: 10%;
 }
 
 .skills-web__node--lower-right {
-  top: 60%;
-  right: 6%;
+  top: 55%;
+  right: 10%;
 }
 
 .skills-web__node--bottom-middle {
-  bottom: 10%;
+  bottom: 13%;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .skills-web__node--bottom-low {
-  bottom: -2%;
+  bottom: 0;
   left: 50%;
-  width: min(430px, 36%);
-  min-height: 76px;
+  width: min(300px, 25%);
+  min-height: 70px;
   transform: translateX(-50%);
 }
 
@@ -560,11 +555,11 @@ img {
 
 .recognition-grid article {
   min-height: 150px;
-  border: 1px solid rgba(103, 80, 164, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 24px;
-  background: #fff;
+  background: rgba(252, 249, 244, 0.1);
   padding: 24px;
-  box-shadow: 0 16px 34px rgba(28, 28, 25, 0.06);
+  box-shadow: none;
   text-align: left;
 }
 
@@ -578,7 +573,7 @@ img {
 
 .recognition-grid p {
   margin: 14px 0 0;
-  color: rgba(31, 36, 64, 0.82);
+  color: rgba(255, 255, 255, 0.86);
   font-size: clamp(15px, 1.2vw, 18px);
   font-weight: 700;
   line-height: 1.35;
@@ -2185,7 +2180,7 @@ img {
   }
 
   .skills-band {
-    text-align: left;
+    text-align: center;
   }
 
   .skills-web {
