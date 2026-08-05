@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --paper: #fcf9f4;
-  --paper-soft: #f4efe9;
+  --paper: #ffffff;
+  --paper-soft: #f7f7f7;
   --ink: #1c1c19;
   --ink-deep: #11110f;
   --muted: #686765;
@@ -96,7 +96,7 @@ img {
   min-height: 78px;
   padding: 0 var(--page-gutter);
   border-bottom: 1px solid var(--line);
-  background: rgba(252, 249, 244, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(22px);
   font-family: var(--ui);
   font-size: 13px;
