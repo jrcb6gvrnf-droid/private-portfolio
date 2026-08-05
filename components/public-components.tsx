@@ -343,8 +343,8 @@ export function PortfolioPage() {
         </div>
         <div className="hero-copy">
           <h1>
-            <span>HEY, I&apos;M</span>
-            <em>GENÉ</em>
+            <span>Hey, I&apos;m</span>
+            <em>Gené</em>
           </h1>
           <p>
             I design product flows, brand systems, websites and content systems
@@ -371,7 +371,7 @@ export function PortfolioPage() {
 
       <section className="skills-band" id="skills">
         <div className="skills-band__intro">
-          <span>SKILLS &amp; PRACTICE</span>
+          <span>Skills &amp; practice</span>
           <h2>
             A connected multidisciplinary skillset
           </h2>
@@ -390,7 +390,7 @@ export function PortfolioPage() {
 
       <section className="section-pad selected-work" id="work">
         <div className="section-heading">
-          <h2>SELECTED WORK</h2>
+          <h2>Selected work</h2>
           <p>Product, brand and content work selected for range, role and evidence.</p>
         </div>
         <div className="work-grid">
@@ -410,7 +410,7 @@ export function PortfolioPage() {
           />
         </div>
         <div className="about-copy">
-          <h2>ABOUT ME</h2>
+          <h2>About me</h2>
           <p>
             I&apos;m a multidisciplinary designer working across UI/UX, branding, web
             design, social media and digital products. My work blends strategic
@@ -425,20 +425,20 @@ export function PortfolioPage() {
             )}
           </div>
           <div className="based-in">
-            <span>BASED IN</span>
+            <span>Based in</span>
             <strong>South Africa & Beyond</strong>
           </div>
         </div>
       </section>
 
       <section className="section-pad process-section" id="process">
-        <h2>HOW I WORK</h2>
+        <h2>How I work</h2>
         <ol className="process-grid">
           {[
-            ["THINK", "Understand the brief, users, business context and constraints."],
-            ["DESIGN", "Turn ideas into clear, functional and visually strong solutions."],
-            ["TEST", "Check usability, responsiveness and real-world fit."],
-            ["REFINE", "Polish the details until the work feels intentional and complete."],
+            ["Think", "Understand the brief, users, business context and constraints."],
+            ["Design", "Turn ideas into clear, functional and visually strong solutions."],
+            ["Test", "Check usability, responsiveness and real-world fit."],
+            ["Refine", "Polish the details until the work feels intentional and complete."],
           ].map(([title, copy], index) => (
             <li className="process-card" key={title}>
               <span>{String(index + 1).padStart(2, "0")}</span>
@@ -452,7 +452,7 @@ export function PortfolioPage() {
       </section>
 
       <section className="contact-panel" id="contact">
-        <h2>LET&apos;S WORK TOGETHER</h2>
+        <h2>Let&apos;s work together</h2>
         <p>
           This private portfolio is shared selectively and updated as new work is
           completed. Contact me on WhatsApp or email for access, collaborations and
