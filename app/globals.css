@@ -363,10 +363,10 @@ img {
 
 .hero-annotation {
   position: absolute;
-  left: 0;
+  left: clamp(-180px, -12vw, -110px);
   right: auto;
   bottom: clamp(4px, 2vw, 26px);
-  max-width: 220px;
+  max-width: 190px;
   margin: 0;
   border-top: 1px solid var(--periwinkle);
   padding-top: 14px;
@@ -2183,6 +2183,10 @@ img {
 
   .hero-card--portrait {
     right: 0;
+  }
+
+  .hero-annotation {
+    left: 0;
   }
 
   .section-heading {
