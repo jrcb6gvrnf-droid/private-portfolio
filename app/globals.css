@@ -495,9 +495,14 @@ img {
 
 .skills-web__node p {
   margin: 7px 0 0;
-  color: rgba(255, 255, 255, 0.78);
+  color: white;
   font-size: clamp(12px, 1vw, 14px);
   line-height: 1.2;
+}
+
+.skills-band .skills-web__center *,
+.skills-band .skills-web__node * {
+  color: white;
 }
 
 .skills-web__node--top-left {
