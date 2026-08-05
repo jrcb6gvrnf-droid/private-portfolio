@@ -356,6 +356,20 @@ export function PortfolioPage() {
               Get in touch
             </a>
           </div>
+          <div className="hero-stat-grid" aria-label="Portfolio highlights">
+            <article>
+              <strong>{visibleProjects.length}</strong>
+              <span>Selected projects</span>
+            </article>
+            <article>
+              <strong>{clientLogos.length}</strong>
+              <span>Brands & clients</span>
+            </article>
+            <article>
+              <strong>{recognitionItems.length}</strong>
+              <span>Recognition notes</span>
+            </article>
+          </div>
         </div>
         <div className="hero-collage" aria-hidden="true">
           <div className="hero-card hero-card--portrait">
