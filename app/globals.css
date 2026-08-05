@@ -536,14 +536,6 @@ img {
   transform: translateX(-50%);
 }
 
-.skills-web__node--bottom-low {
-  bottom: 0;
-  left: 50%;
-  width: min(300px, 25%);
-  min-height: 70px;
-  transform: translateX(-50%);
-}
-
 .recognition-grid {
   position: relative;
   z-index: 1;
@@ -2096,8 +2088,7 @@ img {
     padding: 28px;
   }
 
-  .skills-web__node,
-  .skills-web__node--bottom-low {
+  .skills-web__node {
     border-radius: 22px;
     padding: 20px;
   }
