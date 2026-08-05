@@ -636,11 +636,11 @@ img {
 
 .recognition-grid article {
   min-height: 150px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 24px;
-  background: rgba(252, 249, 244, 0.1);
+  border: 1px solid rgba(71, 90, 146, 0.16);
+  border-radius: 0;
+  background: white;
   padding: 24px;
-  box-shadow: none;
+  box-shadow: 10px 10px 0 rgba(24, 28, 54, 0.08);
   text-align: left;
 }
 
@@ -654,7 +654,7 @@ img {
 
 .recognition-grid p {
   margin: 14px 0 0;
-  color: rgba(255, 255, 255, 0.86);
+  color: var(--periwinkle);
   font-size: clamp(15px, 1.2vw, 18px);
   font-weight: 700;
   line-height: 1.35;
