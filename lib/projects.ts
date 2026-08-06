@@ -1,5 +1,13 @@
 export type ProjectStatus = "draft" | "published";
 
+export type ProjectMedia = {
+  type: "audio" | "video" | "document";
+  src: string;
+  title: string;
+  description?: string;
+  poster?: string;
+};
+
 export type Project = {
   id: string;
   title: string;
@@ -20,6 +28,8 @@ export type Project = {
   outcome: string;
   coverImage: string;
   galleryImages: string[];
+  processImages?: string[];
+  media?: ProjectMedia[];
   featured: boolean;
   hidden: boolean;
   status: ProjectStatus;
@@ -32,44 +42,49 @@ const importedAt = "2026-05-20T20:30:00.000Z";
 
 export const defaultProjects: Project[] = [
   {
-    id: "proj-kleinkrans",
-    title: "KleinKrans Brand Identity & Social Media",
-    slug: "kleinkrans-brand-identity-social-media",
-    client: "KleinKrans",
-    category: "Brand Identity",
-    year: "2025-2026",
-    role: "Brand Designer & Social Media Manager",
-    tools: ["Adobe Illustrator", "Adobe Photoshop", "Canva"],
-    tags: ["Brand Identity", "Logo Design", "Packaging", "Social Media"],
+    id: "proj-groomed",
+    title: "Groomed UI/UX Website Design",
+    slug: "groomed-ui-ux-website-design",
+    client: "Groomed",
+    category: "UI/UX Design",
+    year: "2024",
+    role: "UI/UX Designer",
+    tools: ["Figma", "Adobe Illustrator", "Adobe Photoshop"],
+    tags: ["UI/UX Design", "Website Design", "User Journeys", "Wireframes"],
     shortDescription:
-      "Complete brand identity and social media launch for a South African free-range egg farm.",
+      "Interactive grooming and wedding-prep website concept designed for grooms.",
     brief:
-      "KleinKrans needed a complete brand identity built from scratch: logo suite, visual direction, colour palette, typography, packaging, brand kit and social media launch.",
+      "Groomed explored an interactive information website for grooms, focused on marriage prep, articles, practical checklists and male-oriented wedding resources.",
     overview:
-      "KleinKrans is a free-range egg farm in Mpumalanga built around honest food, natural farming and the line 'more than just a farm'. I created a complete identity system that could work across social, packaging, email signatures and organised brand-kit delivery.",
+      "The project positions Groomed as a bold, accessible web experience that makes wedding preparation feel practical, confident and less overlooked for grooms.",
     challenge:
-      "The brand needed to feel premium and honest at the same time: rooted in South African farm culture, natural and trustworthy without becoming corporate, generic or overly rustic.",
+      "Most wedding resources are bride-focused. The challenge was to create a masculine, approachable experience that balances useful information, emotional readiness and playful interaction.",
     myRole:
-      "I designed the logo suite, monogram, wordmarks, pattern system, packaging direction, email signatures and social launch content, then organised the final brand kit for client use.",
+      "I developed the UX direction, sitemap, task flows, user journeys, wireframes, UI style guide and final visual presentation boards.",
     process:
-      "The process moved from brand positioning and visual research into logo exploration, colour and type selection, pattern development, packaging application and social content rollout.",
+      "The process moved from user journeys, sitemap and task-flow planning into wireframes, style exploration and high-impact final UI presentation boards.",
     designDecisions:
-      "A heritage serif paired with a clean sans-serif created trust and clarity. Warm farm-inspired colours and illustrative motifs kept the system grounded while still feeling polished and contemporary.",
+      "A strong condensed type style, blue, orange, purple and pink accents, bold contrast and interactive motifs created an energetic identity without losing clarity.",
     outcome:
-      "The client received a complete, professional brand kit that works across digital and print, including packaging and social content to support the account launch.",
-    coverImage: "/portfolio-assets/kleinkrans/cover.webp",
+      "The final concept shows a complete UX and UI direction for a groom-focused website, with final presentation boards supported by clear process documentation.",
+    coverImage: "/portfolio-assets/groomed/final/groomed-cover.jpg",
     galleryImages: [
-      "/portfolio-assets/kleinkrans/cover.webp",
-      "/portfolio-assets/kleinkrans/artboard-6.webp",
-      "/portfolio-assets/kleinkrans/artboard-7.webp",
-      "/portfolio-assets/kleinkrans/artboard-8.webp",
-      "/portfolio-assets/kleinkrans/artboard-9.webp",
-      "/portfolio-assets/kleinkrans/egg-carton-sleeve.jpeg",
+      "/portfolio-assets/groomed/final/groomed-cover.jpg",
+      "/portfolio-assets/groomed/final/brag-board-1.jpg",
+      "/portfolio-assets/groomed/final/brag-board-2.jpg",
+    ],
+    processImages: [
+      "/portfolio-assets/groomed/process/sitemap.jpg",
+      "/portfolio-assets/groomed/process/task-flows.jpg",
+      "/portfolio-assets/groomed/process/user-journey-01.jpg",
+      "/portfolio-assets/groomed/process/user-journey-02.jpg",
+      "/portfolio-assets/groomed/process/wireframes.jpg",
+      "/portfolio-assets/groomed/process/ui-style-guide.jpg",
     ],
     featured: true,
     hidden: false,
     status: "published",
-    order: 4,
+    order: 1,
     createdAt: importedAt,
     updatedAt: importedAt,
   },
@@ -84,38 +99,39 @@ export const defaultProjects: Project[] = [
     tools: ["Figma", "Adobe XD", "Adobe Photoshop"],
     tags: ["UI/UX", "Web Application", "Fintech", "Dashboard"],
     shortDescription:
-      "A two-version fintech portal design showing interface refinement from V1 to V2.",
+      "A PayCentral card platform portal and launch experience for clearer onboarding, training and account management.",
     brief:
-      "PayCentral needed a client-facing user portal for payroll and financial data, with a clear interface that business users could trust and navigate confidently.",
+      "PayCentral needed a client-facing card platform launch experience that could introduce the new portal, explain key features and guide users toward training and support.",
     overview:
-      "The project included two portal design iterations. V1 established the information architecture and dashboard structure, while V2 refined the visual design with tighter spacing, stronger hierarchy and a more premium fintech feel.",
+      "The project presents a refreshed PayCentral card platform experience, including the launch landing page, feature education, mobile account access, support messaging and training-booking flow.",
     challenge:
       "Payroll software has to carry dense information without overwhelming users. The interface needed to feel clear, credible and efficient for non-technical business users.",
     myRole:
       "I designed the portal interface, explored visual hierarchy, refined dashboard patterns and prepared the screens for presentation and handoff.",
     process:
-      "I moved from core layout and functional structure into a second visual pass, comparing V1 and V2 decisions to improve clarity, polish and brand expression.",
+      "I focused on making the platform change feel easy to understand, showing what was new, what users could do, and where they could get help or training.",
     designDecisions:
-      "V2 reduced visual noise, sharpened spacing, clarified components and gave the product a more confident brand presence while keeping everyday usability central.",
+      "The direction uses clean product sections, strong fintech contrast, practical feature breakdowns and device-led mockups to make a complex platform update feel accessible.",
     outcome:
-      "The final portal direction demonstrates iterative product thinking and a clearer, more polished experience for a South African fintech platform.",
-    coverImage: "/portfolio-assets/paycentral-portal/cover.webp",
+      "The final launch flow gives PayCentral a clearer way to introduce the updated portal, guide users through key features and support adoption.",
+    coverImage: "/portfolio-assets/paycentral-portal/mockups/hero-platform.png",
     galleryImages: [
-      "/portfolio-assets/paycentral-portal/v2-designs/1.webp",
-      "/portfolio-assets/paycentral-portal/v2-designs/2.webp",
-      "/portfolio-assets/paycentral-portal/v2-designs/3.webp",
-      "/portfolio-assets/paycentral-portal/v2-designs/4.webp",
-      "/portfolio-assets/paycentral-portal/v2-designs/5.webp",
-      "/portfolio-assets/paycentral-portal/v2-designs/6.webp",
-      "/portfolio-assets/paycentral-portal/v1-designs/1.webp",
-      "/portfolio-assets/paycentral-portal/v1-designs/2.webp",
-      "/portfolio-assets/paycentral-portal/v1-designs/3.webp",
-      "/portfolio-assets/paycentral-portal/v1-designs/4.webp",
+      "/portfolio-assets/paycentral-portal/mockups/hero-platform.png",
+      "/portfolio-assets/paycentral-portal/mockups/new-features.png",
+      "/portfolio-assets/paycentral-portal/mockups/platform-features.png",
+      "/portfolio-assets/paycentral-portal/mockups/mobile-account.png",
+      "/portfolio-assets/paycentral-portal/mockups/smarter-interface.png",
+      "/portfolio-assets/paycentral-portal/mockups/support.png",
+      "/portfolio-assets/paycentral-portal/mockups/get-ready.png",
+    ],
+    processImages: [
+      "/portfolio-assets/paycentral-portal/process/portal-goals-flow-map.jpg",
+      "/portfolio-assets/paycentral-portal/process/portal-exploration-board.jpg",
     ],
     featured: true,
     hidden: false,
     status: "published",
-    order: 3,
+    order: 2,
     createdAt: importedAt,
     updatedAt: importedAt,
   },
@@ -145,13 +161,31 @@ export const defaultProjects: Project[] = [
       "A consistent colour story, polished typography and product-led layouts created a more unified presence while still giving individual posts enough variation.",
     outcome:
       "The final assets created a stronger digital brand system and a clear before-and-after story showing the value of consistent social media design.",
-    coverImage: "/portfolio-assets/darling-cellars/cover.webp",
+    coverImage: "/portfolio-assets/darling-cellars/darling-cellars-thumbnail.png",
     galleryImages: [
       "/portfolio-assets/darling-cellars/cover.webp",
       "/portfolio-assets/darling-cellars/before-after-mockup.webp",
       "/portfolio-assets/darling-cellars/youtube-mockup.webp",
       "/portfolio-assets/darling-cellars/youtube-banner.webp",
       "/portfolio-assets/darling-cellars/phone-mockup.webp",
+    ],
+    media: [
+      {
+        type: "video",
+        src: "/portfolio-assets/darling-cellars/darling-cellars-ad-2024.mp4",
+        title: "Darling Cellars campaign video",
+        poster: "/portfolio-assets/darling-cellars/youtube-banner.webp",
+        description:
+          "Campaign video created for the Darling Cellars digital content and YouTube direction.",
+      },
+      {
+        type: "document",
+        src: "/portfolio-assets/darling-cellars/darling-cellars-brand-identity.pdf",
+        title: "Darling Cellars brand identity PDF",
+        poster: "/portfolio-assets/darling-cellars/darling-cellars-brand-identity-preview.jpg",
+        description:
+          "Two-page brand identity document showing the refined visual direction and supporting brand system.",
+      },
     ],
     featured: true,
     hidden: false,
@@ -191,6 +225,7 @@ export const defaultProjects: Project[] = [
       "/portfolio-assets/jeras/cover.webp",
       "/portfolio-assets/jeras/boran-joernaal-ad.jpeg",
     ],
+    processImages: ["/portfolio-assets/jeras/process/sitemap.png"],
     featured: false,
     hidden: false,
     status: "published",
@@ -217,9 +252,9 @@ export const defaultProjects: Project[] = [
     challenge:
       "The creative direction needed to feel unconventional and energetic while still showing structured thinking behind the final identity and poster work.",
     myRole:
-      "I developed style tiles, user journeys, brainstorming boards, poster designs and a final refined mockup.",
+      "I developed style tiles, user journeys, task flows, brainstorming boards, poster designs and final campaign mockups.",
     process:
-      "The work began with ideation and journey mapping, moved into style exploration and culminated in posters and brand application mockups.",
+      "The work began with ideation, task-flow mapping and user journeys, moved into style exploration and culminated in posters and brand application mockups.",
     designDecisions:
       "Bold layout, strong type and expressive visual treatments were supported by UX research tools, creating a rare mix of strategy and print craft.",
     outcome:
@@ -228,13 +263,20 @@ export const defaultProjects: Project[] = [
     galleryImages: [
       "/portfolio-assets/brainwashed/cover.webp",
       "/portfolio-assets/brainwashed/refined-mockup.webp",
-      "/portfolio-assets/brainwashed/style-tile.webp",
       "/portfolio-assets/brainwashed/style-tile-2.webp",
+    ],
+    processImages: [
+      "/portfolio-assets/brainwashed/process/brainstorming.jpg",
+      "/portfolio-assets/brainwashed/process/task-flow.jpg",
+      "/portfolio-assets/brainwashed/process/brainhealth-1.jpg",
+      "/portfolio-assets/brainwashed/process/user-journey-01.jpg",
+      "/portfolio-assets/brainwashed/process/user-journey-02.jpg",
+      "/portfolio-assets/brainwashed/process/user-journey-03.jpg",
     ],
     featured: false,
     hidden: false,
     status: "published",
-    order: 7,
+    order: 3,
     createdAt: importedAt,
     updatedAt: importedAt,
   },
@@ -264,16 +306,24 @@ export const defaultProjects: Project[] = [
       "Earthy, natural visual cues were paired with clean interface structure to keep the experience premium but usable.",
     outcome:
       "The project demonstrates full UX process thinking from research and flows through to refined interface design.",
-    coverImage: "/portfolio-assets/africology/cover.webp",
+    coverImage: "/portfolio-assets/africology/final/africology-thumbnail.png",
     galleryImages: [
-      "/portfolio-assets/africology/cover.webp",
-      "/portfolio-assets/africology/screen-1.webp",
-      "/portfolio-assets/africology/screen-2.webp",
+      "/portfolio-assets/africology/final/africology-thumbnail.png",
+      "/portfolio-assets/africology/final/africology-landing-mockup.png",
+      "/portfolio-assets/africology/final/africology-about-mockup.png",
+    ],
+    processImages: [
+      "/portfolio-assets/africology/process/brainstorming-board.jpg",
+      "/portfolio-assets/africology/process/brainstorming-detail.jpg",
+      "/portfolio-assets/africology/process/task-flow.jpg",
+      "/portfolio-assets/africology/process/user-journey.jpg",
+      "/portfolio-assets/africology/process/wireframe.jpg",
+      "/portfolio-assets/africology/process/style-guide.jpg",
     ],
     featured: false,
     hidden: false,
     status: "published",
-    order: 2,
+    order: 4,
     createdAt: importedAt,
     updatedAt: importedAt,
   },
@@ -303,15 +353,25 @@ export const defaultProjects: Project[] = [
       "Animation was used as a core design tool to guide attention and give the digital product a more memorable personality.",
     outcome:
       "The project shows brand thinking, landing page design and motion design direction working together.",
-    coverImage: "/portfolio-assets/waddle/cover.webp",
+    coverImage: "/portfolio-assets/waddle/waddle-laptop.png",
     galleryImages: [
-      "/portfolio-assets/waddle/cover.webp",
-      "/portfolio-assets/waddle/screen-2.webp",
+      "/portfolio-assets/waddle/waddle-laptop.png",
+      "/portfolio-assets/waddle/ux-psychology.png",
+      "/portfolio-assets/waddle/magazine/cover-page.png",
+      "/portfolio-assets/waddle/magazine/back-cover.png",
+      "/portfolio-assets/waddle/magazine/about-waddle-1.png",
+      "/portfolio-assets/waddle/magazine/about-waddle-2.png",
+      "/portfolio-assets/waddle/magazine/fnb-article-1.png",
+      "/portfolio-assets/waddle/magazine/fnb-article-2.png",
+      "/portfolio-assets/waddle/magazine/nandos-article-1.png",
+      "/portfolio-assets/waddle/magazine/nandos-article-2.png",
+      "/portfolio-assets/waddle/magazine/ok-ja-article-1.png",
+      "/portfolio-assets/waddle/magazine/ok-ja-article-2.png",
     ],
     featured: false,
     hidden: false,
     status: "published",
-    order: 1,
+    order: 7,
     createdAt: importedAt,
     updatedAt: importedAt,
   },

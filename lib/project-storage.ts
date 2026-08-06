@@ -5,20 +5,40 @@ import { defaultProjects, Project, sortProjects } from "@/lib/projects";
 
 const STORAGE_KEY = "gene-portfolio-projects-v2";
 const ADMIN_SESSION_KEY = "gene-portfolio-admin-unlocked-v1";
+const GROOMED_MIGRATION_KEY = "gene-portfolio-groomed-migration-v1";
 const REMOVED_PROJECT_IDS = new Set([
   "proj-pamela-physio",
   "proj-paycentral-social",
   "proj-social-house",
   "proj-stretch",
+  "proj-kleinkrans",
 ]);
 const PROJECT_ORDER_OVERRIDES: Record<string, number> = {
-  "proj-waddle": 1,
-  "proj-africology": 2,
-  "proj-paycentral-portal": 3,
-  "proj-kleinkrans": 4,
+  "proj-groomed": 1,
+  "proj-paycentral-portal": 2,
+  "proj-brainwashed": 3,
+  "proj-africology": 4,
   "proj-darling-cellars": 5,
   "proj-jeras": 6,
-  "proj-brainwashed": 7,
+  "proj-waddle": 7,
+};
+const DEFAULT_MEDIA_REPLACES: Record<string, string[]> = {
+  "proj-darling-cellars": ["/portfolio-assets/darling-cellars/darling-cellars-ad.mp3"],
+};
+const COVER_IMAGE_REPLACES: Record<string, Record<string, string>> = {
+  "proj-darling-cellars": {
+    "/portfolio-assets/darling-cellars/cover.png":
+      "/portfolio-assets/darling-cellars/darling-cellars-thumbnail.png",
+    "/portfolio-assets/darling-cellars/cover.jpeg":
+      "/portfolio-assets/darling-cellars/darling-cellars-thumbnail.png",
+    "/portfolio-assets/darling-cellars/cover.webp":
+      "/portfolio-assets/darling-cellars/darling-cellars-thumbnail.png",
+  },
+  "proj-waddle": {
+    "/portfolio-assets/waddle/cover.png": "/portfolio-assets/waddle/waddle-laptop.png",
+    "/portfolio-assets/waddle/cover.jpeg": "/portfolio-assets/waddle/waddle-laptop.png",
+    "/portfolio-assets/waddle/cover.webp": "/portfolio-assets/waddle/waddle-laptop.png",
+  },
 };
 const OPTIMIZED_IMAGE_PATHS: Record<string, string> = {
   "/portfolio-assets/africology/cover.png": "/portfolio-assets/africology/cover.webp",
@@ -33,8 +53,8 @@ const OPTIMIZED_IMAGE_PATHS: Record<string, string> = {
     "/portfolio-assets/brainwashed/refined-mockup.webp",
   "/portfolio-assets/brainwashed/refined-mockup.jpeg":
     "/portfolio-assets/brainwashed/refined-mockup.webp",
-  "/portfolio-assets/brainwashed/style-tile.png": "/portfolio-assets/brainwashed/style-tile.webp",
-  "/portfolio-assets/brainwashed/style-tile.jpeg": "/portfolio-assets/brainwashed/style-tile.webp",
+  "/portfolio-assets/brainwashed/style-tile.png": "/portfolio-assets/brainwashed/style-tile-2.webp",
+  "/portfolio-assets/brainwashed/style-tile.jpeg": "/portfolio-assets/brainwashed/style-tile-2.webp",
   "/portfolio-assets/brainwashed/style-tile-2.png":
     "/portfolio-assets/brainwashed/style-tile-2.webp",
   "/portfolio-assets/brainwashed/style-tile-2.jpeg":
@@ -196,56 +216,179 @@ function safeDefaultProjects() {
       tools: [...project.tools],
       tags: [...project.tags],
       galleryImages: [...project.galleryImages],
+      processImages: project.processImages ? [...project.processImages] : undefined,
+      media: project.media?.map((item) => ({ ...item })),
     }));
 }
 
-function migrateStoredProjects(projects: Project[]) {
-  return projects.filter((project) => !REMOVED_PROJECT_IDS.has(project.id)).map((project) => {
-    const normalizedProject = {
-      ...project,
-      coverImage: OPTIMIZED_IMAGE_PATHS[project.coverImage] ?? project.coverImage,
-      tools: Array.isArray(project.tools) ? project.tools : [],
-      tags: Array.isArray(project.tags) ? project.tags : [],
-      galleryImages: Array.isArray(project.galleryImages)
-        ? project.galleryImages.map((image) => OPTIMIZED_IMAGE_PATHS[image] ?? image)
-        : [],
-      order: PROJECT_ORDER_OVERRIDES[project.id] ?? project.order,
-    };
+function migrateStoredProjects(projects: Project[], shouldAddGroomedDefault = false) {
+  const migratedProjects = projects
+    .filter((project) => !REMOVED_PROJECT_IDS.has(project.id))
+    .map((project) => {
+      const defaultProject = defaultProjects.find((item) => item.id === project.id);
+      const defaultMedia = defaultProject?.media ?? [];
+      const replacedMediaPaths = new Set(DEFAULT_MEDIA_REPLACES[project.id] ?? []);
+      const storedMedia = Array.isArray(project.media) ? project.media : [];
+      const media = [
+        ...defaultMedia,
+        ...storedMedia.filter(
+          (item) =>
+            !replacedMediaPaths.has(item.src) &&
+            !defaultMedia.some((defaultItem) => defaultItem.src === item.src),
+        ),
+      ];
+      const normalizedProject = {
+        ...project,
+        coverImage:
+          COVER_IMAGE_REPLACES[project.id]?.[project.coverImage] ??
+          OPTIMIZED_IMAGE_PATHS[project.coverImage] ??
+          project.coverImage,
+        tools: Array.isArray(project.tools) ? project.tools : [],
+        tags: Array.isArray(project.tags) ? project.tags : [],
+        galleryImages: Array.isArray(project.galleryImages)
+          ? Array.from(
+              new Set(project.galleryImages.map((image) => OPTIMIZED_IMAGE_PATHS[image] ?? image)),
+            )
+          : [],
+        processImages: Array.isArray(project.processImages)
+          ? Array.from(
+              new Set(project.processImages.map((image) => OPTIMIZED_IMAGE_PATHS[image] ?? image)),
+            )
+          : defaultProject?.processImages
+            ? [...defaultProject.processImages]
+            : undefined,
+        media: media.length > 0 ? media.map((item) => ({ ...item })) : undefined,
+        order: PROJECT_ORDER_OVERRIDES[project.id] ?? project.order,
+      };
+
+    if (normalizedProject.id === "proj-brainwashed" && defaultProject) {
+      const hasBrainwashedProcess = defaultProject.processImages?.every((image) =>
+        normalizedProject.processImages?.includes(image),
+      );
+      const hasDuplicateStyleTile = normalizedProject.galleryImages.some(
+        (image) => image === "/portfolio-assets/brainwashed/style-tile.webp",
+      );
+      const hasCurrentDeliverables = defaultProject.galleryImages.every((image) =>
+        normalizedProject.galleryImages.includes(image),
+      );
+
+      if (!hasBrainwashedProcess || hasDuplicateStyleTile || !hasCurrentDeliverables) {
+        return {
+          ...normalizedProject,
+          coverImage: defaultProject.coverImage,
+          galleryImages: [...defaultProject.galleryImages],
+          processImages: defaultProject.processImages
+            ? [...defaultProject.processImages]
+            : undefined,
+        };
+      }
+    }
+
+    if (normalizedProject.id === "proj-waddle" && defaultProject) {
+      const hasMagazineGallery = normalizedProject.galleryImages.some((image) =>
+        image.includes("/portfolio-assets/waddle/magazine/"),
+      );
+      const hasLegacyWaddleImages = normalizedProject.galleryImages.some(
+        (image) =>
+          image.includes("/portfolio-assets/waddle/cover.webp") ||
+          image.includes("/portfolio-assets/waddle/screen-2.webp"),
+      );
+
+      if (!hasMagazineGallery || hasLegacyWaddleImages) {
+        return {
+          ...normalizedProject,
+          coverImage: defaultProject.coverImage,
+          galleryImages: [...defaultProject.galleryImages],
+          processImages: defaultProject.processImages
+            ? [...defaultProject.processImages]
+            : undefined,
+        };
+      }
+    }
+
+    if (normalizedProject.id === "proj-africology" && defaultProject) {
+      const hasUpdatedAfricologyFinals = normalizedProject.galleryImages.some((image) =>
+        image.includes("/portfolio-assets/africology/final/"),
+      );
+      const hasUpdatedAfricologyProcess = normalizedProject.processImages?.some((image) =>
+        image.includes("/portfolio-assets/africology/process/"),
+      );
+      const hasLegacyAfricologyImages = normalizedProject.galleryImages.some(
+        (image) =>
+          image.includes("/portfolio-assets/africology/cover.webp") ||
+          image.includes("/portfolio-assets/africology/screen-1.webp") ||
+          image.includes("/portfolio-assets/africology/screen-2.webp"),
+      );
+
+      if (!hasUpdatedAfricologyFinals || !hasUpdatedAfricologyProcess || hasLegacyAfricologyImages) {
+        return {
+          ...normalizedProject,
+          coverImage: defaultProject.coverImage,
+          galleryImages: [...defaultProject.galleryImages],
+          processImages: defaultProject.processImages
+            ? [...defaultProject.processImages]
+            : undefined,
+        };
+      }
+    }
+
+    if (normalizedProject.id === "proj-jeras" && defaultProject?.processImages) {
+      return {
+        ...normalizedProject,
+        processImages: Array.from(
+          new Set([...(normalizedProject.processImages ?? []), ...defaultProject.processImages]),
+        ),
+      };
+    }
 
     if (normalizedProject.id !== "proj-paycentral-portal") {
       return normalizedProject;
     }
 
-    const hasFullPageDesigns = normalizedProject.galleryImages.some((image) =>
-      image.includes("full-v2-page"),
-    );
-    const hasUpdatedPortalDesigns = normalizedProject.galleryImages.some((image) =>
-      image.includes("/v2-designs/"),
-    );
     const defaultPayCentralProject = defaultProjects.find(
       (item) => item.id === "proj-paycentral-portal",
     );
 
-    const hasDeviceMockupGallery = normalizedProject.galleryImages.some(
+    const hasPayCentralMockups = normalizedProject.galleryImages.some((image) =>
+      image.includes("/portfolio-assets/paycentral-portal/mockups/"),
+    );
+    const heroPlatformCount = normalizedProject.galleryImages.filter(
+      (image) => image === "/portfolio-assets/paycentral-portal/mockups/hero-platform.png",
+    ).length;
+    const hasLegacyPayCentralImages = normalizedProject.galleryImages.some(
       (image) =>
-        image.includes("/v2-") ||
-        image.endsWith("/v1.png") ||
-        image.endsWith("/cover.png"),
+        image.includes("/portfolio-assets/paycentral-portal/v1-designs/") ||
+        image.includes("/portfolio-assets/paycentral-portal/v2-designs/") ||
+        image.includes("full-v1-page") ||
+        image.includes("full-v2-page"),
     );
 
-    if (
-      (hasFullPageDesigns && hasUpdatedPortalDesigns && !hasDeviceMockupGallery) ||
-      !defaultPayCentralProject
-    ) {
+    if (!defaultPayCentralProject) {
       return normalizedProject;
     }
 
-    return {
-      ...normalizedProject,
-      coverImage: defaultPayCentralProject.coverImage,
-      galleryImages: [...defaultPayCentralProject.galleryImages],
-    };
-  });
+    if (hasPayCentralMockups && !hasLegacyPayCentralImages && heroPlatformCount === 1) {
+      return normalizedProject;
+    }
+
+      return {
+        ...normalizedProject,
+        coverImage: defaultPayCentralProject.coverImage,
+        galleryImages: [...defaultPayCentralProject.galleryImages],
+        processImages: defaultPayCentralProject.processImages
+          ? [...defaultPayCentralProject.processImages]
+          : undefined,
+      };
+    });
+
+  const migratedProjectIds = new Set(migratedProjects.map((project) => project.id));
+  const missingDefaultProjects = shouldAddGroomedDefault
+    ? safeDefaultProjects().filter(
+        (project) => project.id === "proj-groomed" && !migratedProjectIds.has(project.id),
+      )
+    : [];
+
+  return [...migratedProjects, ...missingDefaultProjects];
 }
 
 export function loadProjects() {
@@ -258,17 +401,21 @@ export function loadProjects() {
   if (!stored) {
     const seeded = safeDefaultProjects();
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(seeded));
+    window.localStorage.setItem(GROOMED_MIGRATION_KEY, "true");
     return seeded;
   }
 
   try {
     const parsed = JSON.parse(stored) as Project[];
-    const migratedProjects = migrateStoredProjects(parsed);
+    const shouldAddGroomedDefault = window.localStorage.getItem(GROOMED_MIGRATION_KEY) !== "true";
+    const migratedProjects = migrateStoredProjects(parsed, shouldAddGroomedDefault);
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(sortProjects(migratedProjects)));
+    window.localStorage.setItem(GROOMED_MIGRATION_KEY, "true");
     return migratedProjects;
   } catch {
     const seeded = safeDefaultProjects();
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(seeded));
+    window.localStorage.setItem(GROOMED_MIGRATION_KEY, "true");
     return seeded;
   }
 }
