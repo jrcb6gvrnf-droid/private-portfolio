@@ -106,6 +106,13 @@ const mediumArticles = [
     href: "https://medium.com/@g.e.n.e.designandmarketing/when-global-ux-meets-local-law-are-we-designing-illegally-81343968712c",
   },
 ];
+const ndaProjects = [
+  "HelloPaisa Global App",
+  "HelloPaisa Website",
+  "HelloPaisa Bank CRM System",
+  "HelloPaisa Bank TMS System",
+  "HelloPaisa Global CMS System",
+];
 
 function ButtonLink({
   href,
@@ -629,6 +636,33 @@ export function PortfolioPage() {
             <ProjectCard project={project} index={index} key={project.id} />
           ))}
         </div>
+      </section>
+
+      <section className="section-pad nda-section">
+        <div className="nda-intro">
+          <span className="nda-eyebrow">Also worth knowing</span>
+          <h2>Confidential &amp; NDA work</h2>
+          <p>
+            Not everything I&apos;ve built can live in a public portfolio. Some of my
+            most substantial UI/UX work sits behind client NDAs and backend systems
+            that were never meant to be public facing, including:
+          </p>
+        </div>
+        <div className="nda-wall">
+          {ndaProjects.map((project, index) => (
+            <p
+              className={`nda-wall__item ${index % 2 === 0 ? "is-left" : "is-right"}`}
+              key={project}
+            >
+              {project}
+            </p>
+          ))}
+        </div>
+        <p className="nda-footnote">
+          Alongside project work like this, I&apos;ve also built complete design
+          systems from scratch, component libraries, tokens and documentation
+          included, for teams that needed one foundation to design and build from.
+        </p>
       </section>
 
       <section className="section-pad writing-section" id="writing">
